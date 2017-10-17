@@ -49,8 +49,8 @@
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                         class="icon-cog"></i> Conta <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:;">Definicoes</a></li>
-                                    <li><a href="javascript:;">Ajuda</a></li>
+                                    <li ><a href="javascript:;">Definicoes </a> </li>
+                                    <li ><a href="javascript:;">Ajuda</a> </li>
                                 </ul>
                             </li>
                             @if(Auth::check())
