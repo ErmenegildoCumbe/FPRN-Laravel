@@ -1,7 +1,9 @@
 @extends('layouts.template')
 
 @section('content')
-                            <form class="form-horizontal" action="{{ route('combatente.store')}}" method="post">
+	
+	<form class="form-horizontal" action="<?php //echo base_url('index.php/PedidoEmprestimo_controller/gravarPedidoEmprestimo') ?>" method="post">
+								{{ method_field('PUT') }}
                                {{ csrf_field() }}
                                 
                                 <div class="container">
@@ -9,51 +11,55 @@
                                         <div class="span6">
                                             <fieldset>
                                                 <div class="control-group">											
-                                                    <label class="control-label" for="nome">Nome</label>
+                                                    <label class="control-label" for="nome"></label>
                                                     <input class="form-control" name="nome" id="nome" placeholder="Exemplo: Ana" required=""/>
                                                    			
                                                 </div> <!-- /control-group -->
 
 												<div class="control-group">											
-                                                    <label class="control-label" for="apelido">Apelido</label>
+                                                    <label class="control-label" for="apelido"></label>
                                                     <input class="form-control" name="apelido" id="apelido" placeholder="Exemplo: Cuinhane" required=""/>
                                                    			
                                                 </div> <!-- /control-group -->
 
                                                 <div class="control-group">											
-                                                    <label class="control-label" for="telefone">Telefone</label>
+                                                    <label class="control-label" for="telefone"></label>
                                                     <input class="form-control" name="telefone" id="telefone" placeholder="Exemplo: 841234567" required=""/>
                                                    			
                                                 </div> <!-- /control-group -->    
 
                                                 <div class="controls">
-                                                	 <label class="control-label" for="sexo">Sexo</label>
                                                         <select class="span4" name="sexo" id="sexo">
-                                                            <option value="Masculino">Masculino</option>    
-                                                            <option value="Feminino">Feminino</option>  
+                                                            <option value="1">Masculino</option>    
+                                                            <option value="2">Feminino</option>  
                                                         </select>
                                                     </div> <!-- /controls -->	
 
                                                   <div class="controls">
-                                                  		<label class="control-label" for="tipoMutuario">Tipo de Mutuario</label>
                                                         <select class="span4" name="tipoMutuario" id="tipoMutuario">
-                                                            <option value="Antigo Combatente">Antigo Combatente</option>    
-                                                            <option value="Desmobilizado de Guerra">Desmobilizado de Guerra</option>  
+                                                            <option value="1">Antigo Combatente</option>    
+                                                            <option value="2">Desmobilizado de Guerra</option>  
                                                         </select>
                                                     </div> <!-- /controls -->
 
-                                                    <div class="control-group">											<label class="control-label" for="numeroCombatente">Numero de Combatente</label>
-                                                    	<input class="form-control" name="numeroCombatente" id="numeroCombatente" placeholder="Exemplo: 4555557" required=""/>
+                                                    <div class="control-group">											
+                                                    <label class="control-label" for="numeroCombatente"></label>
+                                                    <input class="form-control" name="numeroCombatente" id="numeroCombatente" placeholder="Exemplo: 4555557" required=""/>
                                                    			
                                                 </div> <!-- /control-group -->	  
 
                                                 <div class="controls">
-                                                		<label class="control-label" for="provincia">Provincia</label>
                                                         <select class="span4" name="provincia" id="provincia">
-                                                        	@foreach($province as $provincia)
-	                                                            <option value={{ $provincia->id}}>{{ $provincia->provincia}}</option>    
-	                                                            
-                                                             @endforeach  
+                                                            <option value="Maputo">Maputo</option>    
+                                                            <option value="Gaza">Gaza</option>
+                                                            <option value="Inhambane">Inhambane</option>
+                                                            <option value="Manica">Manica</option>
+                                                            <option value="Sofala">Sofala</option>
+                                                            <option value="Tete">Tete</option>
+                                                            <option value="Zambézia">Zambézia</option>
+                                                            <option value="Nampula">Nampula</option> 
+                                                            <option value="Lichinga">Lichinga</option>
+                                                            <option value="Cabo Delgado">Cabo Delgado</option>   
                                                         </select>
                                                     </div> <!-- /controls -->                                          
 
@@ -70,7 +76,7 @@
 
                                                 <div class="form-actions">
                                                     <button class="btn btn-primary" id="addPedidoEmprestimo">Prosseguir</button> 
-                                                    <a  href="<?php//      echo base_url('index.php/PedidoEmprestimo_controller/pesquisarCombatente') ?>" class="btn">Cancelar</a>
+                                                    <a  href="<?php echo base_url('index.php/PedidoEmprestimo_controller/pesquisarCombatente') ?>" class="btn">Cancelar</a>
                                                 </div> <!-- /form-actions -->
 
                                             </fieldset>

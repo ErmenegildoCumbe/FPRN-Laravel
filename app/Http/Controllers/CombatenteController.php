@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Combatente;
+use App\Provincia;
 use Illuminate\Http\Request;
 
 class CombatenteController extends Controller
@@ -14,7 +15,9 @@ class CombatenteController extends Controller
      */
     public function index()
     {
-        //
+        $combatentes = Combatente::all();
+
+       return view('combatentes.index', compact('combatentes'));
     }
 
     /**
@@ -24,7 +27,8 @@ class CombatenteController extends Controller
      */
     public function create()
     {
-        //
+        $province = Provincia::all();
+        return view('combatentes.create',compact('province'));
     }
 
     /**
@@ -35,7 +39,17 @@ class CombatenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $combatente = new Combatente;
+        $combatente->nome = $request->nome;
+        $combatente->apelido = $request->apelido;
+        $combatente->telefone = $request->telefone;
+        $combatente->sexo = $request->sexo;
+        $combatente->tipoMutuario = $request->tipoMutuario;
+        $combatente->numeroCombatente = $request->numeroCombatente;
+        $combatente->provincias_id = $request->provincia;
+        
+        $combatente->save();
+        return redirect()->route('combatente.index');
     }
 
     /**
