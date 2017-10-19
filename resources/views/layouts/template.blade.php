@@ -102,8 +102,10 @@
         <div class="main">
             <div class="main-inner">
                 <div class="container">
-                    <!--Main contente-->
-                    @yield('content')
+                    <div class="row">
+                        <!--Main contente-->
+                        @yield('content')
+                    </div>
                 </div>
                 <!-- /container --> 
             </div>

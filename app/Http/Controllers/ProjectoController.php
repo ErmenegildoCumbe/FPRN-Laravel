@@ -35,7 +35,17 @@ class ProjectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $projecto = new Projecto;
+       $projecto->tituloProjecto = $request->tituloProjecto;
+       $projecto->objectivo = $request->objectivo;
+       $projecto->publicoAlvo = $request->publicoAlvo;
+       $projecto->duracaoProjecto = $request->duracaoProjecto;
+       $projecto->custoProjecto = $request->custoProjecto;
+       $projecto->anexo = $request->userfile;
+       $projecto->areaactuacaos_id = $request->AreaActuacaoId;
+       $projecto->save();
+
+       return $projecto->id;
     }
 
     /**

@@ -93,7 +93,7 @@
 
                                             </fieldset>
                                         </div>
-                                        <div class="span6">
+                                        <div class="span4">
                                             <h4>Dados do Combatente</h4>
                                             <hr>
                                             <img src=" {{ asset('img/User-blue-icon.png') }}" width="120px" alt=""/><br>
@@ -124,20 +124,20 @@
             <div class="modal-header" style="background-color: #0098d0;color: #ffffff">
                 <h4 class="modal-title" id="myModalLabel">ADICIONAR O PROJECTO</h4>
             </div> 
-            <form id="myFormProjecto" action="http://localhost/FPRN/index.php/Projecto_controller/gravarProjecto/"  method="post">
+            <form id="myFormProjecto" action=""  method="post">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Titulo do Projecto</label>
-                        <input type="text" class="form-control" name="tituloProjecto" placeholder="Exemplo: " required="" style="width: 500px">
+                        <label for="tituloProjecto">Titulo do Projecto</label>
+                        <input type="text" class="form-control" name="tituloProjecto" id="tituloProjecto" placeholder="Exemplo: " required="" style="width: 500px">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Objectivo</label>
-                        <textarea name="objectivo" class="form-control" cols="25" rows="5" required="" style="width: 500px"></textarea>
+                        <label for="objectivo">Objectivo</label>
+                        <textarea name="objectivo" id="objectivo" class="form-control" cols="25" rows="5" required="" style="width: 500px"></textarea>
                     </div>  
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Área de Actuação</label>
-                        <select class="form-control" name="AreaActuacaoId"  style="width: 500px">
+                        <label for="AreaActuacaoId">Área de Actuação</label>
+                        <select class="form-control" name="AreaActuacaoId" id="AreaActuacaoId"  style="width: 500px">
                             @foreach($areaactuacao as $value)
                                                   
                                 <option value="{{ $value->id }}"> {{ $value->areaactuacaofundo }} </option>
@@ -146,19 +146,19 @@
                         </select>
                     </div>  
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Publico Alvo</label>
-                        <input type="text" class="form-control" name="publicoAlvo"required=""  placeholder="Exemplo: " style="width: 500px">
+                        <label for="publicoAlvo">Publico Alvo</label>
+                        <input type="text" class="form-control" name="publicoAlvo" id="publicoAlvo" required=""  placeholder="Exemplo: " style="width: 500px">
                     </div>  
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Duração do projecto</label>
-                        <input type="text" class="form-control"  name="duracaoProjecto" required="" placeholder="Exemplo: " style="width: 500px">
+                        <label for="duracaoProjecto">Duração do projecto</label>
+                        <input type="text" class="form-control"  name="duracaoProjecto" id="duracaoProjecto" required="" placeholder="Exemplo: " style="width: 500px">
                     </div>  
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Custo do Projecto em Meticais</label>
-                        <input type="text" class="form-control" name="custoProjecto" required="" placeholder="Exemplo: 200000" style="width: 500px">
+                        <label for="custoProjecto">Custo do Projecto em Meticais</label>
+                        <input type="text" class="form-control" name="custoProjecto" id="custoProjecto" required="" placeholder="Exemplo: 200000" style="width: 500px">
                     </div> 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Anexar Algo Documento</label>
+                        <label for="userfile">Anexar Algum Documento</label>
                         <input type="file" class="form-control" id="userfile" name="userfile" placeholder="Exemplo: " style="width: 500px">
                     </div> 
 
@@ -177,18 +177,19 @@
     $(function () {
         $('#btnAddProjecto').click(function () {
             var data = $('#myFormProjecto').serialize();
+            console.log(data);
             $.ajax({
                 type: 'jax',
                 method: 'post',
-                url: "<?php //echo base_url('index.php/Projecto_controller/gravarProjecto/') ?>",
+                url: "{{ route('projecto.store')}}",
                 data: data,
-                async: false,
+                //async: false,
                 dataType: 'json',
                 success: function (resposta) {
                     $('input[name="projectoId"]').val(resposta);
                     // $('#sucesso').html('Projecto Adicionado com sucesso').fadeIn().delay(4000).fadeOut('show');
                     $('#sucesso').text("Projecto Adicionado com sucesso");
-                    $("#sucesso").append("<img id='theImg' src='<?php //echo base_url('assests/img/project.png') ?>'/>");
+                    $("#sucesso").append("<img id='theImg' src='{{ asset('img/project.png') }}'/>");
                 },
                 error: function () {
                     $("#sucesso").load(location.href + " #sucesso>*", "");
@@ -198,6 +199,7 @@
         });
 
         $('#addPedidoEmprestimo').click(function () {
+            //console.log($("#projectoId").val());
             if ($("#projectoId").val() == 0 && $("#linhacreditoId").val() == 2) {
                 $('#myModal').modal('show');
             }

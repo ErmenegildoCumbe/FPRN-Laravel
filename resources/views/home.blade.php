@@ -76,13 +76,13 @@
 
         $('#btnBuscar').click(function () {
             var dataSend = $('#formPesquisar').serialize();
-            console.log("chegou aqui");
+            //console.log("chegou aqui");
             visualizarCombatentes(dataSend);
         });
 
         //funcao que visualiza ista de combatentes buscados na hora da pesquisa
         function  visualizarCombatentes(dataSend) {
-              console.log("chegou aqui no ajax...");
+              //console.log("chegou aqui no ajax...");
             $.ajax({
                 //type: 'jax',
                 method: 'get',
@@ -95,7 +95,7 @@
                     var i;
                     var id=0;
                     for (i = 0; i < data.length; i++) {
-                        id=data[i].idCombatente;
+                       // id=data[i].id;
                          //console.log(data[i].id);
                         // console.log(i);
                         html += '<tr>' +
@@ -106,7 +106,7 @@
                                 '<td>' + data[i].sexo + '</td>' +
                                 '<td>' + data[i].provincias_id + '</td>' +
                                 '<td>' +
-                                '<a href="<?php //echo base_url('') ?>index.php/PedidoEmprestimo_controller/enviarPedidoEmprestimo/'+id+'" class="btn btn-success">Seleccionar</a>' +
+                                '<a href= "/pedidoemprestimos/'+data[i].id+'" class="btn btn-success">Seleccionar</a>' +
                                 '</td>' +
                                 '</tr>';
                     }
