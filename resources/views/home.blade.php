@@ -13,6 +13,7 @@
                 <div class="widget big-stats-container">
                     <div>
                         <form id="formPesquisar" class="form-horizontal" action="<?php //echo base_url('index.php/PedidoEmprestimo_controller/sendCampoPesquisar') ?>" method="post">
+                             {{ csrf_field() }}
                             <fieldset>
                                 <br>
                                 <div class="control-group">											
@@ -64,42 +65,46 @@
 <!-- /row -->
 <script>
     //autocomplete
-    $(function () {
-        $("#term").autocomplete({
-            source: "<?php// echo base_url('index.php/PedidoEmprestimo_controller/returnCombatenteAutoComplete') ?>"
-        });
-    });
+    // $(function () {
+    //     $("#term").autocomplete({
+    //         source: "<?php// echo base_url('index.php/PedidoEmprestimo_controller/returnCombatenteAutoComplete') ?>"
+    //     });
+    // });
     
     //listar combatentes encontrados
     $(function () {
 
         $('#btnBuscar').click(function () {
             var dataSend = $('#formPesquisar').serialize();
+            console.log("chegou aqui");
             visualizarCombatentes(dataSend);
         });
 
         //funcao que visualiza ista de combatentes buscados na hora da pesquisa
         function  visualizarCombatentes(dataSend) {
+              console.log("chegou aqui no ajax...");
             $.ajax({
-                type: 'jax',
-                method: 'post',
-                url: "<?php //echo base_url('index.php/PedidoEmprestimo_controller/returnCombatentesEncontrados') ?>",
-                data: dataSend,
-                async: false,
-                dataType: 'json',
+                //type: 'jax',
+                method: 'get',
+                url: '/combatentes',
+                //data: 'null',
+                //async: false,
+               // dataType: 'json',
                 success: function (data) {
                     var html = '';
                     var i;
                     var id=0;
                     for (i = 0; i < data.length; i++) {
                         id=data[i].idCombatente;
+                         //console.log(data[i].id);
+                        // console.log(i);
                         html += '<tr>' +
                                 '<td>' + data[i].numeroCombatente + '</td>' +
                                 '<td>' + data[i].nome + '</td>' +
                                 '<td>' + data[i].apelido + '</td>' +
                                 '<td>' + data[i].telefone + '</td>' +
                                 '<td>' + data[i].sexo + '</td>' +
-                                '<td>' + data[i].provincia + '</td>' +
+                                '<td>' + data[i].provincias_id + '</td>' +
                                 '<td>' +
                                 '<a href="<?php //echo base_url('') ?>index.php/PedidoEmprestimo_controller/enviarPedidoEmprestimo/'+id+'" class="btn btn-success">Seleccionar</a>' +
                                 '</td>' +

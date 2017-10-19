@@ -24,3 +24,7 @@ Route::resource('pagamento', 'PagamentoController');
 Route::resource('pedidoemprestimo', 'PedidoemprestimoController');
 Route::resource('projecto', 'ProjectoController');
 Route::resource('user', 'UserController');
+
+
+Route::get('/combatentes', 'CombatenteController@viajson');	
+Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');	

@@ -20,6 +20,8 @@ class CombatenteController extends Controller
        return view('combatentes.index', compact('combatentes'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -95,5 +97,12 @@ class CombatenteController extends Controller
     public function destroy(Combatente $combatente)
     {
         //
+    }
+
+    public function viajson(){
+         $combatentes = Combatente::all();
+        // return $combatentes->toJson();
+         return Response($combatentes);
+         //return view('combatentes.index');
     }
 }

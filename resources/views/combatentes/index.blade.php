@@ -32,7 +32,7 @@
               <td>{{$combatente->numeroCombatente}}</td>
 
               <td class="text-center"><a class='btn btn-info btn-xs' href="{{ route('combatente.edit',$combatente->id) }}">
-               <span class="glyphicon glyphicon-edit"></span> Editar</a>
+               <span class="glyphicon glyphicon-edit"></span> Editar</a> 	 	
                <a href="/eliminar-disciplina/{{$combatente->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                {{ method_field('DELETE') }}
                </td>

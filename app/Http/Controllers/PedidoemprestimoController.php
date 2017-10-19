@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pedidoemprestimo;
+use App\Combatente;
+use App\Areaactuacao;
 use Illuminate\Http\Request;
 
 class PedidoemprestimoController extends Controller
@@ -24,7 +26,7 @@ class PedidoemprestimoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pedidoemprestimo.create');
     }
 
     /**
@@ -81,5 +83,16 @@ class PedidoemprestimoController extends Controller
     public function destroy(Pedidoemprestimo $pedidoemprestimo)
     {
         //
+    }
+
+    public function createattr($id){
+        $combatente = Combatente::findOrFail($id);
+        $areaactuacao = Areaactuacao::all();
+        if (isset($combatente)) {
+             return view('pedidoemprestimo.create',compact('combatente','areaactuacao'));
+        }
+        else{
+            return view('home');
+        }
     }
 }
