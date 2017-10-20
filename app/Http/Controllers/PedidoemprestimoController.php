@@ -37,7 +37,7 @@ class PedidoemprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "ola";
     }
 
     /**
@@ -94,5 +94,10 @@ class PedidoemprestimoController extends Controller
         else{
             return view('home');
         }
+    }
+
+    public function ola()
+    {
+        return 'ola';
     }
 }

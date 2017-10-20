@@ -13,25 +13,28 @@
                 <div class="widget big-stats-container">
                     <div class="widget-content" style="padding:10px;">
                         <div>
-                            <form class="form-horizontal" action="<?php //echo base_url('index.php/PedidoEmprestimo_controller/gravarPedidoEmprestimo') ?>" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="combatenteId" value="{{ $combatente->id }}"/>
-                                <input type="hidden" name="projectoId" value="0" id="projectoId">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="span6">
+                            
+                            <div class="span6">
+                                <form class="form-horizontal" id="formpedidoemprestimo">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="combatenteId" value="{{ $combatente->id }}"/>
+                                    <input type="hidden" name="projectoId" value="0" id="projectoId">
+                                    <div class="container">
+                                        <div class="row">
                                             <fieldset>
                                                 <div class="control-group">											
-                                                    <label class="control-label" for="username"></label>
+                                                        <!-- <label class="control-label" for="username"></label> -->
                                                     <div class="controls">   
                                                         <h4 class="help-block">Pedido de Emprestimo</h4>
-                                                        <div id="sucesso" style="width: 370px; color: green;font-size: 18px"></div>
+                                                        <div id="sucesso" style="width: 370px; color: green;font-size: 18px">
+                                                                
+                                                        </div>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
                                                 <div class="control-group">	
-                                                    <label class="control-label" for="Country">Linha de credito<sup></sup></label>
-                                                    <div class="controls">
+                                                    <label class="control-label" for="linhacreditoId">Linha de credito<sup></sup></label>
+                                                     <div class="controls">
                                                         <select class="span4" name="linhacreditoId" id="linhacreditoId">
                                                             <option value="1">Linha de Credito Simplificado</option>    
                                                             <option value="2">Linha de Credito Empreendedorismo</option>  
@@ -40,74 +43,78 @@
                                                 </div> <!-- /control-group -->
 
                                                 <div class="control-group">	
-                                                    <label class="control-label" for="Country">Rendimento Mensal<sup></sup></label>
+                                                    <label class="control-label" for="rendimento">Rendimento Mensal<sup></sup></label>
                                                     <div class="controls">
-                                                        <input class="span4" name="rendimento" placeholder="Exemplo: 5000" required=""/>
+                                                        <input class="span4" name="rendimento" id="rendimento" placeholder="Exemplo: 5000" required=""/>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
                                                 <div class="control-group">											
-                                                    <label class="control-label" for="lastname">Motante Solicitado<sup></sup></label>
+                                                    <label class="control-label" for="montante">Motante Solicitado<sup></sup></label>
                                                     <div class="controls">
-                                                        <input class="span4" name="montante" placeholder="Exemplo: 40000" type="text" required=""/>
+                                                        <input class="span4" name="montante" id="montante" placeholder="Exemplo: 40000" type="text" required=""/>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
                                                 <div class="control-group">											
-                                                    <label class="control-label" for="phone">Pagamento (Mensal)<sup></sup></label>
+                                                    <label class="control-label" for="tempoProposto">Pagamento (Mensal)<sup></sup></label>
                                                     <div class="controls">
-                                                        <select class="span4" name="tempoProposto">
-                                                            <?php
-                                                            for ($i = 3; $i <= 60; $i++) {
-                                                                if ($i == 12) {
-                                                                    echo '<option value="' . $i . '">Um Ano</option>';
-                                                                } else if ($i == 24) {
-                                                                    echo '<option value="' . $i . '">Dois Anos</option>';
-                                                                } else if ($i == 36) {
-                                                                    echo '<option value="' . $i . '">Três Anos</option>';
-                                                                } else if ($i == 48) {
-                                                                    echo '<option value="' . $i . '">Quatro Anos</option>';
-                                                                } else if ($i == 60) {
-                                                                    echo '<option value="' . $i . '">Cinco Anos</option>';
-                                                                } else {
-                                                                    echo '<option value="' . $i . '">' . $i . ' Meses</option>';
-                                                                }
+                                                        <select class="span4" name="tempoProposto" id="tempoProposto">
+                                                        <?php
+                                                        for ($i = 3; $i <= 60; $i++) {
+                                                            if ($i == 12) {
+                                                                echo '<option value="' . $i . '">Um Ano</option>';
+                                                            } else if ($i == 24) {
+                                                                echo '<option value="' . $i . '">Dois Anos</option>';
+                                                            } else if ($i == 36) {
+                                                                echo '<option value="' . $i . '">Três Anos</option>';
+                                                            } else if ($i == 48) {
+                                                                echo '<option value="' . $i . '">Quatro Anos</option>';
+                                                            } else if ($i == 60) {
+                                                                echo '<option value="' . $i . '">Cinco Anos</option>';
+                                                            } else {
+                                                                echo '<option value="' . $i . '">' . $i . ' Meses</option>';
                                                             }
-                                                            ?>
-                                                        </select>
+                                                        }
+                                                        ?>
+                                                </select>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
 
                                                 <div class="control-group">											
-                                                    <label class="control-label" for="bio">Observação </label>
+                                                    <label class="control-label" for="observacao">Observação </label>
                                                     <div class="controls">
-                                                        <textarea class="span4" name="observacao" placeholder="">N/A</textarea>
+                                                        <textarea class="span4" name="observacao" id="observacao" placeholder="N/A"></textarea>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
                                                 <div class="form-actions">
-                                                    <button class="btn btn-primary" id="addPedidoEmprestimo">Prosseguir</button> 
+                                                    <!-- <button class="btn btn-primary" id="addPedidoEmprestimo">Prosseguir</button>  -->
+                                                    <input type="button" class="btn btn-primary" id="addPedidoEmprestimo" value="Prosseguir" name="">
                                                     <a  href="<?php //echo base_url('index.php/PedidoEmprestimo_controller/pesquisarCombatente') ?>" class="btn">Cancelar</a>
                                                 </div> <!-- /form-actions -->
 
                                             </fieldset>
                                         </div>
-                                        <div class="span4">
-                                            <h4>Dados do Combatente</h4>
-                                            <hr>
-                                            <img src=" {{ asset('img/User-blue-icon.png') }}" width="120px" alt=""/><br>
-                                            <b>Nome</b>: {{ $combatente->nome }}<br>
-                                            <b>Apelido</b>: {{ $combatente->apelido }}<br>
-                                            <b>Contacto</b>: {{ $combatente->telefone }}<br>
-                                            <b>Sexo</b>: {{ $combatente->sexo }}<br>
-                                            <b>Provincia: {{ $combatente->provincias_id }}</b><br>
-                                            <b>Numero de Combatente</b>:{{ $combatente->numeroCombatente }}
-                                        </div>
                                     </div>
-                                </div>
 
-                            </form>
+                                </form>
+                                <!-- </Form pedido> -->
+                            </div>
+                                   <!-- <Dados do Combatente -->
+                            <div class="span5">
+                                <h4>Dados do Combatente</h4>
+                                <hr>
+                                <img src=" {{ asset('img/User-blue-icon.png') }}" width="120px" alt=""/><br>
+                                <b>Nome</b>: {{ $combatente->nome }}<br>
+                                <b>Apelido</b>: {{ $combatente->apelido }}<br>
+                                <b>Contacto</b>: {{ $combatente->telefone }}<br>
+                                <b>Sexo</b>: {{ $combatente->sexo }}<br>
+                                <b>Provincia: {{ $combatente->provincias_id }}</b><br>
+                                <b>Numero de Combatente</b>:{{ $combatente->numeroCombatente }}
+                            </div>                                
+                            <!-- </Dados do Combatente> -->
                         </div>
                     </div>
                 </div>
@@ -175,6 +182,7 @@
 
 
     $(function () {
+        //Form Projectoaction... 
         $('#btnAddProjecto').click(function () {
             var data = $('#myFormProjecto').serialize();
             console.log(data);
@@ -198,11 +206,40 @@
             });
         });
 
+        //Form Pedido emprestimo action...
         $('#addPedidoEmprestimo').click(function () {
+            alert("botao clicado");
             //console.log($("#projectoId").val());
             if ($("#projectoId").val() == 0 && $("#linhacreditoId").val() == 2) {
-                $('#myModal').modal('show');
-            }
+                 $('#myModal').modal('show');
+             } 
+             else {
+            
+                var dadospedido = $('#formpedidoemprestimo').serialize();
+                console.log(dadospedido);
+                $.ajax({
+                type: 'jax',
+                method: 'post',
+                url: "/pedido",
+                data: dadospedido,
+                //async: false,
+                dataType: 'json',
+                success: function (respos) {
+                    alert(respos);
+                    //console.log("Chegou aqui");
+                    //$('input[name="projectoId"]').val(resposta);
+                    // $('#sucesso').html('Projecto Adicionado com sucesso').fadeIn().delay(4000).fadeOut('show');
+                    //$('#sucesso').text("Projecto Adicionado com sucesso");
+                    //$("#sucesso").append("<img id='theImg' src='{{ asset('img/project.png') }}'/>");
+                    //alert('Pedido enviado com sucesso!!!');
+                },
+                error: function () {
+                   // $("#sucesso").load(location.href + " #sucesso>*", "");
+                    $('#sucesso').text('Pedido de emprestimo nao foi gravado');
+                }
+            });
+
+           }
         });
 
         $(document).ready(function () {
@@ -213,6 +250,7 @@
                 }
             });
         });
+        //fechando o script...na linha seguinte
     });
 
 

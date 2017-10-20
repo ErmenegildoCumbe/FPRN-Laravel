@@ -27,4 +27,6 @@ Route::resource('user', 'UserController');
 
 
 Route::get('/combatentes', 'CombatenteController@viajson');	
-Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');	
+Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
+//Route::post('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
+Route::post('/pedido', 'PedidoemprestimoController@ola');
