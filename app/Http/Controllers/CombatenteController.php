@@ -50,7 +50,6 @@ class CombatenteController extends Controller
         $combatente->numeroCombatente = $request->numeroCombatente;
         $combatente->provincias_id = $request->provincia;
         
-        $combatente->save();
         return redirect()->route('combatente.index');
     }
 

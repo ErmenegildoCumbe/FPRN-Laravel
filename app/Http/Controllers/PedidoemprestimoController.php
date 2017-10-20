@@ -37,7 +37,20 @@ class PedidoemprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        return "ola";
+        $data = new date('y-m-d');
+       $pedidoemprestimo = new Pedidoemprestimo;
+       $pedidoemprestimo->montante = $request->montante;
+       $pedidoemprestimo->data = $data;
+       $pedidoemprestimo->rendimento = $request->rendimento;
+       $pedidoemprestimo->tempoProposto = $request->tempoProposto;
+       $pedidoemprestimo->observacao = $request->observacao;
+       $pedidoemprestimo->pedidoestado = 1;
+       $pedidoemprestimo->combatentes_id = $request->combatenteId;
+       $pedidoemprestimo->linhacreditos_id = $request->linhacreditoId;
+       $pedidoemprestimo->projectos_id = $request->projectoId;
+       $pedidoemprestimo->users_id = 1;
+       // $pedidoemprestimo->save();
+        return $pedidoemprestimo->data;
     }
 
     /**

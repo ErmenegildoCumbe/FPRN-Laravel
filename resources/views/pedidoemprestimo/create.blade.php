@@ -185,7 +185,7 @@
         //Form Projectoaction... 
         $('#btnAddProjecto').click(function () {
             var data = $('#myFormProjecto').serialize();
-            console.log(data);
+            //console.log(data);
             $.ajax({
                 type: 'jax',
                 method: 'post',
@@ -198,6 +198,8 @@
                     // $('#sucesso').html('Projecto Adicionado com sucesso').fadeIn().delay(4000).fadeOut('show');
                     $('#sucesso').text("Projecto Adicionado com sucesso");
                     $("#sucesso").append("<img id='theImg' src='{{ asset('img/project.png') }}'/>");
+                    //document.getElementById("montante").innerHTML = $('#custoProjecto').val();
+                    //document.getElementById("tempoProposto").innerHTML = $('#duracaoProjecto').val();
                 },
                 error: function () {
                     $("#sucesso").load(location.href + " #sucesso>*", "");
@@ -208,7 +210,7 @@
 
         //Form Pedido emprestimo action...
         $('#addPedidoEmprestimo').click(function () {
-            alert("botao clicado");
+            //alert("botao clicado");
             //console.log($("#projectoId").val());
             if ($("#projectoId").val() == 0 && $("#linhacreditoId").val() == 2) {
                  $('#myModal').modal('show');
@@ -216,14 +218,15 @@
              else {
             
                 var dadospedido = $('#formpedidoemprestimo').serialize();
-                console.log(dadospedido);
+                //console.log(dadospedido);
                 $.ajax({
                 type: 'jax',
                 method: 'post',
-                url: "/pedido",
+                //url: "{{ route('pedidoemprestimo.store') }}",
+                url: "/pedidoemprestimo",
                 data: dadospedido,
                 //async: false,
-                dataType: 'json',
+                //dataType: 'json',
                 success: function (respos) {
                     alert(respos);
                     //console.log("Chegou aqui");
@@ -235,7 +238,9 @@
                 },
                 error: function () {
                    // $("#sucesso").load(location.href + " #sucesso>*", "");
-                    $('#sucesso').text('Pedido de emprestimo nao foi gravado');
+                    //$('#sucesso').text('Pedido de emprestimo nao foi gravado');
+                    //console.log(err);
+                     alert("Ocorreu um erro");
                 }
             });
 
