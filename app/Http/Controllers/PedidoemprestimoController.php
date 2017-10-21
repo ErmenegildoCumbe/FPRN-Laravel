@@ -37,7 +37,7 @@ class PedidoemprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new date('y-m-d');
+        $data = date('Y-m-d');
        $pedidoemprestimo = new Pedidoemprestimo;
        $pedidoemprestimo->montante = $request->montante;
        $pedidoemprestimo->data = $data;
@@ -49,8 +49,11 @@ class PedidoemprestimoController extends Controller
        $pedidoemprestimo->linhacreditos_id = $request->linhacreditoId;
        $pedidoemprestimo->projectos_id = $request->projectoId;
        $pedidoemprestimo->users_id = 1;
-       // $pedidoemprestimo->save();
-        return $pedidoemprestimo->data;
+       $pedidoemprestimo->save();
+       $mensagem = "Pedido submetido comsucesso!";
+        return $mensagem;
+       // $var = "ola";
+       // return $data;
     }
 
     /**
