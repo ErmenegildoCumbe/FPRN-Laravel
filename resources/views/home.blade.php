@@ -96,15 +96,15 @@
                     var id=0;
                     for (i = 0; i < data.length; i++) {
                        // id=data[i].id;
-                         //console.log(data[i].id);
-                        // console.log(i);
+                        // console.log(data[i]);
+                         //console.log(i);
                         html += '<tr>' +
                                 '<td>' + data[i].numeroCombatente + '</td>' +
                                 '<td>' + data[i].nome + '</td>' +
                                 '<td>' + data[i].apelido + '</td>' +
                                 '<td>' + data[i].telefone + '</td>' +
                                 '<td>' + data[i].sexo + '</td>' +
-                                '<td>' + data[i].provincias_id + '</td>' +
+                                '<td>' + data[i].provincia.provincia + '</td>' +
                                 '<td>' +
                                 '<a href= "/pedidoemprestimos/'+data[i].id+'" class="btn btn-success">Seleccionar</a>' +
                                 '</td>' +
@@ -112,8 +112,8 @@
                     }
                     $('#showdata').html(html);
                 },
-                error: function () {
-                    alert('Nao conseguir fazer retrive da base de dados');
+                error: function (error) {
+                    alert('Nao conseguir fazer retrive da base de dados'+error);
                 }
             });
         }

@@ -101,7 +101,13 @@ class CombatenteController extends Controller
     public function viajson(){
          $combatentes = Combatente::all();
         // return $combatentes->toJson();
+         // $outro;
+         // @foreach ($combatentes as $key ) {
+         //     $outro = $outro+$key;
+         // }
+        //$outro = $combatentes[1]->provincia->provincia;
          return Response($combatentes);
          //return view('combatentes.index');
+        //return Response($outro);
     }
 }

@@ -37,6 +37,7 @@ class PedidoemprestimoController extends Controller
      */
     public function store(Request $request)
     {
+       // try{
         $data = date('Y-m-d');
        $pedidoemprestimo = new Pedidoemprestimo;
        $pedidoemprestimo->montante = $request->montante;
@@ -50,10 +51,17 @@ class PedidoemprestimoController extends Controller
        $pedidoemprestimo->projectos_id = $request->projectoId;
        $pedidoemprestimo->users_id = 1;
        $pedidoemprestimo->save();
-       $mensagem = "Pedido submetido comsucesso!";
-        return $mensagem;
+
+   //}catch(\Exception $e){
+    // return back()->withInput();
+  // }
+       //$mensagem = "Pedido submetido comsucesso!"; //,compact('pedidoemprestimo')
+       //return view('pedidoemprestimo.imprimirComprovativo');
+        //return redirect()->route('pedidoemprestimo.imprimirComprovativo', compact('pedidoemprestimo'));
+        //return $mensagem;
        // $var = "ola";
-       // return $data;
+        //return Response($pedidoemprestimo);
+        return $pedidoemprestimo->id;
     }
 
     /**
@@ -115,5 +123,19 @@ class PedidoemprestimoController extends Controller
     public function ola()
     {
         return 'ola';
+    }
+
+    public function gravar(Request $request){
+         //return view('pedidoemprestimo.imprimirComprovativo');
+        view('pedidoemprestimo.imprimirComprovativo')->render();
+        //$mensagem = "Agora sim";
+      //  return $mensagem;
+    }
+
+    public function paraimprimir($id){
+
+         //return view('home');
+        $pedidoemprestimo = Pedidoemprestimo::findOrFail($id);
+        return view('pedidoemprestimo.imprimirComprovativo',compact('pedidoemprestimo'));
     }
 }

@@ -30,3 +30,7 @@ Route::get('/combatentes', 'CombatenteController@viajson');
 Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
 //Route::post('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
 Route::post('/pedido', 'PedidoemprestimoController@ola');
+Route::post('/pedido', 'PedidoemprestimoController@gravar');
+Route::get('/pedido/{id}', 'PedidoemprestimoController@paraimprimir')->name('impressao');
+
+

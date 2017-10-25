@@ -15,7 +15,7 @@
                         <div>
                             
                             <div class="span6">
-                                <form class="form-horizontal" id="formpedidoemprestimo">
+                                <form class="form-horizontal" id="formpedidoemprestimo" action="{{ route('pedidoemprestimo.store') }}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="combatenteId" value="{{ $combatente->id }}"/>
                                     <input type="hidden" name="projectoId" value="0" id="projectoId">
@@ -111,7 +111,7 @@
                                 <b>Apelido</b>: {{ $combatente->apelido }}<br>
                                 <b>Contacto</b>: {{ $combatente->telefone }}<br>
                                 <b>Sexo</b>: {{ $combatente->sexo }}<br>
-                                <b>Provincia: {{ $combatente->provincias_id }}</b><br>
+                                <b>Provincia: {{ $combatente->provincia->provincia }}</b><br>
                                 <b>Numero de Combatente</b>:{{ $combatente->numeroCombatente }}
                             </div>                                
                             <!-- </Dados do Combatente> -->
@@ -220,7 +220,7 @@
                 var dadospedido = $('#formpedidoemprestimo').serialize();
                 //console.log(dadospedido);
                 $.ajax({
-                type: 'jax',
+                dataType: 'json',
                 method: 'post',
                 //url: "{{ route('pedidoemprestimo.store') }}",
                 url: "/pedidoemprestimo",
@@ -228,18 +228,21 @@
                 //async: false,
                 //dataType: 'json',
                 success: function (respos) {
-                    alert(respos);
-                    //console.log("Chegou aqui");
+                    //console.log(respos);
+                    //alert(respos);
+                    var cod = respos;
+                    //var link = "pedido/"+cod;
+                     window.location="{{URL::to('pedido/')}}"+"/"+cod;
                     //$('input[name="projectoId"]').val(resposta);
                     // $('#sucesso').html('Projecto Adicionado com sucesso').fadeIn().delay(4000).fadeOut('show');
                     //$('#sucesso').text("Projecto Adicionado com sucesso");
                     //$("#sucesso").append("<img id='theImg' src='{{ asset('img/project.png') }}'/>");
                     //alert('Pedido enviado com sucesso!!!');
                 },
-                error: function () {
+                error: function (err) {
                    // $("#sucesso").load(location.href + " #sucesso>*", "");
                     //$('#sucesso').text('Pedido de emprestimo nao foi gravado');
-                    //console.log(err);
+                    console.log(err);
                      alert("Ocorreu um erro");
                 }
             });
