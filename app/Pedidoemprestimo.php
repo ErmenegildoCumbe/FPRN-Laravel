@@ -9,7 +9,7 @@ use App\Linhacredito;
 class Pedidoemprestimo extends Model
 {
 	 protected $fillable = ['montante','data','rendimento','tempoProposto','observacao','pedidoestado','combatentes_id','linhacreditos_id','projectos_id','users_id'];
-	 protected $with = ['combatente','linhacredito'];
+	 protected $with = ['combatente','linhacredito','user'];
 
     public function combatente(){
     	return $this->belongsTo('App\Combatente','combatentes_id');
@@ -17,5 +17,8 @@ class Pedidoemprestimo extends Model
 
     public function linhacredito(){
     	return $this->belongsTo('App\Linhacredito','linhacreditos_id');
+    }
+    public function user(){
+    	return $this->belongsTo('App\User','users_id');
     }
 }

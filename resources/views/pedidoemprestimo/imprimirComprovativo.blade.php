@@ -76,7 +76,7 @@
                                 </table>
                                 ----------------------------------------------------------------------------------------------------------------------------------------------------------
                                 <br><br>
-                                Atendente: <?php //echo $getDadosComprovativo->usernome; ?> <?php //echo $getDadosComprovativo->userapelido; ?> 
+                                Atendente: {{ $pedidoemprestimo->user->name }} {{ $pedidoemprestimo->user->apelido }}
                                 <br><br><br>
                                 <center>
                                     ___________________________________________<br>

@@ -26,4 +26,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function pedidos(){
+        return $this->hasMany('App\Pedidoemprestimo', 'users_id');
+    }
 }
