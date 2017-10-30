@@ -86,7 +86,7 @@
                             <div class="form-actions"> 
                                 <button  class="btn" onclick="printContent('imprimir')">Imprimir Comprovativo</button> 
                                 <a href="/" class="btn btn-primary">Novo Pedido Emprestimo</a>                                         
-                                <a  href="<?php //echo base_url('index.php/PedidoEmprestimo_controller/getPedidoByMes/'); ?>" class="btn btn-success"> Pedidos Deste Mês</a>
+                                <a  href="{{ route('pedidoempresti') }}<?php //echo base_url('index.php/PedidoEmprestimo_controller/getPedidoByMes/'); ?>" class="btn btn-success"> Lista de Pedidos </a>
                             </div> <!-- /form-actions -->
                         </div>
                     </div>

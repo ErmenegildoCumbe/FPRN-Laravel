@@ -138,4 +138,21 @@ class PedidoemprestimoController extends Controller
         $pedidoemprestimo = Pedidoemprestimo::findOrFail($id);
         return view('pedidoemprestimo.imprimirComprovativo',compact('pedidoemprestimo'));
     }
+
+    public function getall(){
+        $pedidos = Pedidoemprestimo::all();
+        //echo  $pedidos;
+         return view('pedidoemprestimo.lista', compact('pedidos'));
+        //return echo "Dadd";
+       // return view('pedidoemprestimo.index');
+       //return  redirect()->route('combatente');
+
+    }
+    public function detalhes(Request $request){
+         $id = $request->dat;
+         $pedidoemprestimo = Pedidoemprestimo::findOrFail($id);
+        return Response($pedidoemprestimo);
+        //return 1;
+    }
+    
 }

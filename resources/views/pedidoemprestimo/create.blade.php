@@ -180,6 +180,10 @@
 </div>
 <script>
 
+    //para o modal
+    $('#myModal').on('shown.bs.modal', function () {
+     $('#myInput').focus()
+    });
 
     $(function () {
         //Form Projectoaction... 

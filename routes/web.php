@@ -31,6 +31,10 @@ Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
 //Route::post('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
 Route::post('/pedido', 'PedidoemprestimoController@ola');
 Route::post('/pedido', 'PedidoemprestimoController@gravar');
+Route::get('/detalhes', 'PedidoemprestimoController@detalhes')->name('detail');
 Route::get('/pedido/{id}', 'PedidoemprestimoController@paraimprimir')->name('impressao');
+Route::get('pedidoempresti', 'PedidoemprestimoController@getall')->name('pedidoempresti');
+
+
 
 
