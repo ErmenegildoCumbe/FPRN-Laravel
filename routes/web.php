@@ -24,7 +24,11 @@ Route::resource('pagamento', 'PagamentoController');
 Route::resource('pedidoemprestimo', 'PedidoemprestimoController');
 Route::resource('projecto', 'ProjectoController');
 Route::resource('user', 'UserController');
-
+Route::get('logar', function () {
+    return view('login');
+});
+Route::get('/combatentesComplete', 'CombatenteController@autocomplete')->name('combatenteauto');
+Route::get('/pedidosComplete', 'PedidoemprestimoController@autocomplete')->name('pedidoauto');
 
 Route::get('/combatentes', 'CombatenteController@viajson');	
 Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
@@ -32,9 +36,14 @@ Route::get('/pedidoemprestimos/{id}', 'PedidoemprestimoController@createattr');
 Route::post('/pedido', 'PedidoemprestimoController@ola');
 Route::post('/pedido', 'PedidoemprestimoController@gravar');
 Route::get('/detalhes', 'PedidoemprestimoController@detalhes')->name('detail');
+Route::get('/pesquisa', 'PedidoemprestimoController@viajson')->name('getmach');
 Route::get('/pedido/{id}', 'PedidoemprestimoController@paraimprimir')->name('impressao');
 Route::get('pedidoempresti', 'PedidoemprestimoController@getall')->name('pedidoempresti');
 
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

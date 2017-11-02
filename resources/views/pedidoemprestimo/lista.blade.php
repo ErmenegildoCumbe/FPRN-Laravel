@@ -39,12 +39,12 @@
                         <tr>
                             <th> Nome </th>
                             <th> Montante Requisitado </th>
-                            <th> Montante Disponibilizado</th>
-                            <th>Estado</th>
-                            <th class="td-actions"> </th>
+                            <th> Estado</th>
+                            <!-- <th></th> -->
+                            <th class="td-actions"> Accoes</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="showdata">
                          @foreach ($pedidos as $pedido)
                             <tr>
                                 <td> {{ $pedido->combatente->nome }} {{ $pedido->combatente->apelido}}  </td>
@@ -82,46 +82,76 @@
 <!-- /row -->
 
 
-</script>-->
+
 <script type="text/javascript">
 
     $('#myModal').on('shown.bs.modal', function () {
      $('#myInput').focus()
     });
 
-//     $("#procurar").keyup(function () {
-// //split the current value of searchInput
-//         var data = this.value.split(" ");
-// //create a jquery object of the rows
-//         var jo = $("#tdBoddy").find("tr");
-//         if (this.value == "") {
-//             jo.show();
-//             return;
-//         }
-// //hide all the rows
-//         jo.hide();
+    $(function () {
 
-// //Recusively filter the jquery object to get results.
-//         jo.filter(function (i, v) {
-//             var $t = $(this);
-//             for (var d = 0; d < data.length; ++d) {
-//                 if ($t.is(":contains('" + data[d] + "')")) {
-//                     return true;
-//                 }
-//             }
-//             return false;
-//         })
-// //show the rows that match.
-//                 .show();
-//     }).focus(function () {
-//         this.value = "";
-//         $(this).css({
-//             "color": "black"
-//         });
-//         $(this).unbind('focus');
-//     }).css({
-//         "color": "#C0C0C0"
-//     });
+        $('#procurar').autocomplete({
+            source : '{{ route('combatenteauto') }}',
+            minlenght:1,
+            autoFocus:true,
+            select:function(e,ui){
+               // alert(ui.item.id);
+               var dat = ui.item.id;
+        //console.log(dat);
+         $.ajax({
+                type: 'jax',
+                method: 'get',
+                url: "{{ route('getmach') }}",
+                data: 'dat='+dat,
+                //async: false,
+                dataType: 'json',
+                success: function (resposta) {
+                    //console.log(resposta.length);
+                    // document.getElementById("numcomb").innerHTML = resposta.id;
+                    // document.getElementById("nomcomb").innerHTML = resposta.combatente.nome;
+                    // $('#myModal').modal('show');
+                     var html = '';
+                     for (var i = 0; i < resposta.length; i++) {
+                         
+                     
+                     var estad = "pendente";
+                    if (resposta[i].pedidoestado = 1) {
+                        estad = "em avaliacao";
+                    }
+                    else if(resposta[i].pedidoestado = 2){
+                        estad = "pre-aprovado";
+                    }
+                    else if(resposta[i].pedidoestado = 3){
+                        estad = "aprovado";
+                    }
+                    else if(resposta[i].pedidoestado = 4){
+                        estad = "reprovado";
+                    }
+                html += '<tr>' +
+                                '<td>' + resposta[i].combatente.nome+' '+resposta[i].combatente.apelido + '</td>' +
+                                '<td>' + resposta[i].montante + '</td>' +
+                                '<td>' + estad + '</td>' +
+                                
+                                '<td>' +
+                                '<input type="button" class="btn btn-success btn-small" onclick="detalhes('+resposta[i].id+')" value="Detalhes" name="another">' +
+                                '</td>' +
+                                '</tr>';
+                    }
+                                $('#showdata').html(html);
+                },
+                error: function (er) {
+                    //$("#sucesso").load(location.href + " #sucesso>*", "");
+                    //$('#sucesso').text('Projecto nao foi gravado');
+                    alert("Ocoreu algum erro...");
+                    console.log(er);
+                }
+            });
+
+               
+            }
+        });
+        });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {

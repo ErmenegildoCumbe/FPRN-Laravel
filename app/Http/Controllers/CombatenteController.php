@@ -110,4 +110,15 @@ class CombatenteController extends Controller
          //return view('combatentes.index');
         //return Response($outro);
     }
+    public function autocomplete(Request $request){
+        $combatentes = Combatente::where('nome','LIKE','%'.$request->term.'%')
+        ->take(5)
+        ->get();
+        $results = array();
+        foreach ($combatentes as $key => $value) {
+            $results[] = ['id'=>$value->id,'value'=>$value->nome,'numecom'=>$value->numeroCombatente,'apelido'=>$value->apelido,'contacto'=>$value->telefone,'genero'=>$value->sexo,'provincia'=>$value->provincia->provincia];
+        }
+        return Response($results);
+
+    }
 }

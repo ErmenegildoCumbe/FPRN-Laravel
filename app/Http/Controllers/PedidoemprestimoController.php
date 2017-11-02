@@ -6,6 +6,7 @@ use App\Pedidoemprestimo;
 use App\Combatente;
 use App\Areaactuacao;
 use Illuminate\Http\Request;
+use Auth;
 
 class PedidoemprestimoController extends Controller
 {
@@ -46,10 +47,11 @@ class PedidoemprestimoController extends Controller
        $pedidoemprestimo->tempoProposto = $request->tempoProposto;
        $pedidoemprestimo->observacao = $request->observacao;
        $pedidoemprestimo->pedidoestado = 1;
+      
        $pedidoemprestimo->combatentes_id = $request->combatenteId;
        $pedidoemprestimo->linhacreditos_id = $request->linhacreditoId;
        $pedidoemprestimo->projectos_id = $request->projectoId;
-       $pedidoemprestimo->users_id = 1;
+       $pedidoemprestimo->users_id = Auth::id();
        $pedidoemprestimo->save();
 
    //}catch(\Exception $e){
@@ -153,6 +155,20 @@ class PedidoemprestimoController extends Controller
          $pedidoemprestimo = Pedidoemprestimo::findOrFail($id);
         return Response($pedidoemprestimo);
         //return 1;
+    }
+
+    public function viajson(Request $request){
+        $id = $request->dat;
+         $pedidoemprestimo = Pedidoemprestimo::where('combatentes_id','=',$id)->get();
+        // return $combatentes->toJson();
+         // $outro;
+         // @foreach ($combatentes as $key ) {
+         //     $outro = $outro+$key;
+         // }
+        //$outro = $combatentes[1]->provincia->provincia;
+         return Response($pedidoemprestimo);
+         //return view('combatentes.index');
+        //return Response($outro);
     }
     
 }

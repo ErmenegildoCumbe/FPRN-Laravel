@@ -1,7 +1,39 @@
 @extends('layouts.template')
 
+@section('page')
+  <!--  @if(!Auth::check())
+    <section class="success" id="about">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>IMP+</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization. adad</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="img-responsive">
+                         <img class="img-responsive" src="{{ asset('img/logo_login.jpg') }}">
+                    </div>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                     <a href="#" class="btn btn-lg btn-outline">
+                        <i class="fa fa-download"></i> Download Theme
+                    </a> 
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif  -->
+@endsection
+
 @section('content')
 
+
+     @if(Auth::check())
 <div class="row">
     <div class="span12">
         <div class="widget widget-nopad">
@@ -17,7 +49,7 @@
                             <fieldset>
                                 <br>
                                 <div class="control-group">											
-                                    <label class="control-label" for="firstname">Nome/Apelido ou Nr<sup></sup></label>
+                                    <label class="control-label" for="term">Nome/Apelido ou Nr<sup></sup></label>
                                     <div class="controls">
                                         <input class="span4" id="term" name="term" placeholder="Procurar pelo nome/apelido/Nr. Combatente" />	
                                     </div> <!-- /controls -->				
@@ -74,6 +106,28 @@
     //listar combatentes encontrados
     $(function () {
 
+        $('#term').autocomplete({
+            source : '{{ route('combatenteauto') }}',
+            minlenght:1,
+            autoFocus:true,
+            select:function(e,ui){
+               // alert(ui.item.id);
+               var html = '';
+                html += '<tr>' +
+                                '<td>' + ui.item.numecom + '</td>' +
+                                '<td>' + ui.item.value + '</td>' +
+                                '<td>' + ui.item.apelido + '</td>' +
+                                '<td>' + ui.item.contacto + '</td>' +
+                                '<td>' + ui.item.genero + '</td>' +
+                                '<td>' + ui.item.provincia + '</td>' +
+                                '<td>' +
+                                '<a href= "/pedidoemprestimos/'+ui.item.id+'" class="btn btn-success">Seleccionar</a>' +
+                                '</td>' +
+                                '</tr>';
+                                $('#showdata').html(html);
+            }
+        });
+
         $('#btnBuscar').click(function () {
             var dataSend = $('#formPesquisar').serialize();
             //console.log("chegou aqui");
@@ -120,5 +174,5 @@
     });
 
 </script>
-
+@endif
 @endsection

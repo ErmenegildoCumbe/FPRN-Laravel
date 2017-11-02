@@ -13,6 +13,7 @@
               
                <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
                <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+                <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
               <link href="{{ asset('css/pages/dashboard.css') }}" rel="stylesheet">
                <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
                <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
@@ -28,11 +29,15 @@
         <!--css de autocomplete-->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+        <script src=" {{ asset('js/bootstrap.min.js') }}"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->
+        <!-- <script src="{{ asset('js/jquery-1.12.4.js') }}"></script> -->
+        <script src="{{ asset ('js/jquery-ui.js') }}"></script>
+        
         <!--jquery de autocomplete-->
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
-		<script src="{{ asset ('js/jquery-ui.js') }}"></script>
+        
 		
     </head>
     <body>
@@ -43,7 +48,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
-                    </a><a class="brand" href="#"> <img style="width: 110px; height: 25px;" class="img-responsive" src="{{ asset('img/logo_t.png') }} "></a>
+                    </a>
+                    <a class="brand" href="#"> <img style="width: 110px; height: 25px;" class="img-responsive" src="{{ asset('img/logo_t.png') }} "></a>
+                    @if(!Auth::check())
+                    <div class="nav">
+                        <a href="logar">Login </a> 
+                    </div>
+                    @endif 
+                    <!-- sbj -->
+                    @if(Auth::check())
                     <div class="nav-collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -53,20 +66,25 @@
                                     <li ><a href="javascript:;">Ajuda</a> </li>
                                 </ul>
                             </li>
-                            @if(Auth::check())
+                            
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                         class="icon-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Perfil</a></li>
                                     <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Sair</a></li>
+                                                     document.getElementById('logout-form').submit();">Sair</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
-                            @endif
+                            
 
                         </ul>
                     </div>
+                    @endif
                     <!--/.nav-collapse --> 
                 </div>
                 <!-- /container --> 
@@ -74,6 +92,7 @@
             <!-- /navbar-inner --> 
         </div>
         <!-- /navbar -->
+        @if(Auth::check())
         <div class="subnavbar">
             <div class="subnavbar-inner">
                 <div class="container">
@@ -98,7 +117,13 @@
             </div>
             <!-- /subnavbar-inner --> 
         </div>
+        @endif
         <!-- /subnavbar -->
+
+        <!-- getss -->
+        <div class="row tama">
+            @yield('page')
+        </div>
         <div class="main">
             <div class="main-inner">
                 <div class="container">
@@ -159,13 +184,17 @@
         <!-- /footer --> 
         <!-- Le javascript<script src="
         ================================================== --> 
-      
+        
          <script src=" {{ asset('js/excanvas.min.js') }}"></script>  
         <script src=" {{ asset('js/chart.min.js') }}" type="text/javascript"></script> 
-        <script src=" {{ asset('js/bootstrap.min.js') }}"></script> 
+        
          <script language="javascript" type="text/javascript" src=" {{ asset('js/full-calendar/fullcalendar.min.js') }}"></script> 
          <script src=" {{ asset('js/base.js') }}"></script>  
-        <script src="{{ asset('js/app.js') }}"></script>
+        <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+        <!-- Scripts que estavam no cabeçalho... -->
+        <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+        <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+        
 
     </body>
 </html>

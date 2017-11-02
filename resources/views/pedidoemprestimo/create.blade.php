@@ -166,7 +166,7 @@
                     </div> 
                     <div class="form-group">
                         <label for="userfile">Anexar Algum Documento</label>
-                        <input type="file" class="form-control" id="userfile" name="userfile" placeholder="Exemplo: " style="width: 500px">
+                        <input type="file" class="form-control" id="userfile" name="userfile"  style="width: 500px">
                     </div> 
 
                 </div>
