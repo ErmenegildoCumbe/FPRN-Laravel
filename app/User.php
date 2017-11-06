@@ -15,8 +15,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','apelido','telefone','nivelAcesso','nomeUtilizador'
+        'name', 'email', 'password','apelido','telefone','nivelAcesso','nomeUtilizador','foto'
     ];
+   // protected $with = ['combatente'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -29,4 +30,7 @@ class User extends Authenticatable
     public function pedidos(){
         return $this->hasMany('App\Pedidoemprestimo', 'users_id');
     }
+    public function combatente(){
+        return $this->hasOne('App\Combatente','users_id');
+        }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Combatente;
 use App\Provincia;
+use App\User;
 use Illuminate\Http\Request;
 
 class CombatenteController extends Controller
@@ -42,6 +43,17 @@ class CombatenteController extends Controller
     public function store(Request $request)
     {
        $combatente = new Combatente;
+       $user = new User;
+        $user->name = $request->nome;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->numeroCombatente);
+        $user->apelido = $request->apelido;
+        $user->telefone = $request->telefone;
+        $user->nivelAcesso = 3;
+        $user->foto = "img/users/default.jpg";
+        $user->nomeUtilizador = $request->nome;
+        $user->save();
+        //add combatente...
         $combatente->nome = $request->nome;
         $combatente->apelido = $request->apelido;
         $combatente->telefone = $request->telefone;
@@ -49,8 +61,10 @@ class CombatenteController extends Controller
         $combatente->tipoMutuario = $request->tipoMutuario;
         $combatente->numeroCombatente = $request->numeroCombatente;
         $combatente->provincias_id = $request->provincia;
-        
-        return redirect()->route('combatente.index');
+        $combatente->users_id =$user->id;
+        $combatente->save();
+
+        return Response($combatente);
     }
 
     /**
@@ -112,7 +126,7 @@ class CombatenteController extends Controller
     }
     public function autocomplete(Request $request){
         $combatentes = Combatente::where('nome','LIKE','%'.$request->term.'%')
-        ->take(5)
+        ->take(10)
         ->get();
         $results = array();
         foreach ($combatentes as $key => $value) {

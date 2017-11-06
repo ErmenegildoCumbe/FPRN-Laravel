@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Modal... -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="myModal" tabindex="1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,9 +11,15 @@
         <h4 class="modal-title">Detalhes do Pedido de Emprestimo</h4>
       </div>
       <div class="modal-body">
-        <h4>Numero do pedido  <span id="numcomb"></span></h4>
+        <h4>Numero do pedido  <span id="numpedi"></span></h4>
+        <h4>Tipo de credito  <span id="linhacred"></span></h4>
         <h4>Nome do Combatente  <span id="nomcomb"></span></h4>
-        <p>One fine body&hellip;</p>
+        <h4>Numero do Combatente  <span id="numcomb"></span></h4>
+        <h5>Montante requisitado  <span id="motante"></span></h4>
+        <h5>Data de submissao  <span id="data"></span></h4>
+        <h5>Funcionário que fez a submissao  <span id="funcio"></span></h4>
+        <h5>Estado do Pedido  <span id="estado"></span></h4>
+        <!-- <p>One fine body&hellip;</p> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -119,6 +125,9 @@
                     if (resposta[i].pedidoestado = 1) {
                         estad = "em avaliacao";
                     }
+                    else if(resposta[i].pedidoestado = 0){
+                        estad = "pendente";
+                    }
                     else if(resposta[i].pedidoestado = 2){
                         estad = "pre-aprovado";
                     }
@@ -178,8 +187,13 @@
                     //$("#sucesso").append("<img id='theImg' src='{{ asset('img/project.png') }}'/>");
                     //document.getElementById("montante").innerHTML = $('#custoProjecto').val();
                     //document.getElementById("tempoProposto").innerHTML = $('#duracaoProjecto').val();
-                    document.getElementById("numcomb").innerHTML = resposta.id;
+                    document.getElementById("numpedi").innerHTML = resposta.id;
                     document.getElementById("nomcomb").innerHTML = resposta.combatente.nome;
+                    document.getElementById("linhacred").innerHTML = resposta.linhacredito.designacao;
+                    document.getElementById("numcomb").innerHTML = resposta.combatente.numeroCombatente;
+                    document.getElementById("motante").innerHTML = resposta.montante;
+                    document.getElementById("data").innerHTML = resposta.data;
+                    document.getElementById("funcio").innerHTML = resposta.user.name;
                     $('#myModal').modal('show');
                 },
                 error: function (er) {

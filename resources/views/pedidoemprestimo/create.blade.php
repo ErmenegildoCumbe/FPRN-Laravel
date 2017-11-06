@@ -5,7 +5,7 @@
 <div class="row">
     <div class="span12">
         <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
+            <div class="widget-header"> <i class="fa icon-list-alt"></i>
                 <h3> Enviar Pedido de Emprestimo</h3>
             </div>
 
@@ -205,9 +205,10 @@
                     //document.getElementById("montante").innerHTML = $('#custoProjecto').val();
                     //document.getElementById("tempoProposto").innerHTML = $('#duracaoProjecto').val();
                 },
-                error: function () {
-                    $("#sucesso").load(location.href + " #sucesso>*", "");
-                    $('#sucesso').text('Projecto nao foi gravado');
+                error: function (error) {
+                    console.log(error);
+                    // $("#sucesso").load(location.href + " #sucesso>*", "");
+                    // $('#sucesso').text('Projecto nao foi gravado');
                 }
             });
         });

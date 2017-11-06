@@ -50,7 +50,14 @@ class PedidoemprestimoController extends Controller
       
        $pedidoemprestimo->combatentes_id = $request->combatenteId;
        $pedidoemprestimo->linhacreditos_id = $request->linhacreditoId;
-       $pedidoemprestimo->projectos_id = $request->projectoId;
+       $project = $request->projectoId;
+       if($project==0){
+            $pedidoemprestimo->projectos_id = null;
+       }
+       else{
+            $pedidoemprestimo->projectos_id = $project;
+       }
+       
        $pedidoemprestimo->users_id = Auth::id();
        $pedidoemprestimo->save();
 

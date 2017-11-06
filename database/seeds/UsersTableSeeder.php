@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
            'apelido' => 'Cumbe',
            'telefone' => '823993952',
            'nivelAcesso' => '1',
+           'foto' => 'img/users/default.jpg',
            'nomeUtilizador' => 'Rafael'               
        ]);
 
@@ -28,6 +29,7 @@ class UsersTableSeeder extends Seeder
            'apelido' => 'Biquisa',
            'telefone' => '865493472',
            'nivelAcesso' => '0',
+           'foto' => 'img/users/default.jpg',
            'nomeUtilizador' => 'Cheila'               
        ]);
     }

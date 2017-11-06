@@ -20,7 +20,7 @@ class CreateProjectoTable extends Migration
             $table->string('publicoAlvo', 50);
             $table->string('duracaoProjecto', 50);
             $table->double('custoProjecto');
-            $table->binary('anexo')->nullable();
+            $table->string('anexo',100)->nullable();
             $table->integer('areaactuacaos_id')->unsigned();
             $table->foreign('areaactuacaos_id')->references('id')->on('areaactuacaos');
             $table->timestamps();

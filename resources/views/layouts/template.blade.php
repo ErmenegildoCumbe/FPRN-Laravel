@@ -15,7 +15,8 @@
                <link href="{{ asset('css/style.css') }}" rel="stylesheet">
                 <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
               <link href="{{ asset('css/pages/dashboard.css') }}" rel="stylesheet">
-               <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <!--  <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> -->
                <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
 
         <!-- <link href=" {{ asset('css/font-awesome.css') }} " rel="stylesheet"> -->
@@ -60,7 +61,7 @@
                     <div class="nav-collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="icon-cog"></i> Conta <b class="caret"></b></a>
+                                        class="fa icon-cog"></i> Conta <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li ><a href="javascript:;">Definicoes </a> </li>
                                     <li ><a href="javascript:;">Ajuda</a> </li>
@@ -68,7 +69,7 @@
                             </li>
                             
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="icon-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
+                                        class="fa icon-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Perfil</a></li>
                                     <li><a href="{{ route('logout') }}"
@@ -97,18 +98,18 @@
             <div class="subnavbar-inner">
                 <div class="container">
                     <ul class="mainnav">
-                        <li class="active"><a href="index.html"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-                        <li><a href="reportes.html"><i class="icon-list-alt"></i><span>Reportes</span> </a> </li>
-                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><span>Motuario</span> <b class="caret"></b></a>
+                        <li class="active"><a href=""><i class="fa icon-dashboard"></i><span>Dashboard</span> </a> </li>
+                        <li><a href=""><i class="fa icon-list-alt"></i><span>Reportes</span> </a> </li>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa icon-user"></i><span>Motuario</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php //echo 'index.php/PedidoEmprestimo_controller/pesquisarCombatente' ?>">Registar Pedido</a></li>
-                                <li><a href="<?php //echo 'index.php/PedidoEmprestimo_controller/getPedidoByMes' ?>">Lista de Pedido</a></li>
+                                <li><a href="/">Registar Pedido</a></li>
+                                <li><a href="{{ route('pedidoempresti') }}">Lista de Pedido</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Combatente</span> <b class="caret"></b></a>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa icon-long-arrow-down"></i><span>Combatente</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="formulario.html">Registar Combatente</a></li>
-                                <li><a href="faq.html">Listar Combantente</a></li>
+                                <li><a href="{{ route('combatente.create') }}">Registar Combatente</a></li>
+                                <li><a href="{{ route('combatente.index') }}">Listar Combantente</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -25,7 +25,7 @@ class CreatePedidoemprestimoTable extends Migration
             $table->foreign('combatentes_id')->references('id')->on('combatentes');
             $table->integer('linhacreditos_id')->unsigned();
             $table->foreign('linhacreditos_id')->references('id')->on('linhacreditos');
-            $table->integer('projectos_id')->unsigned();
+            $table->integer('projectos_id')->unsigned()->nullable();
             $table->foreign('projectos_id')->references('id')->on('projectos');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');

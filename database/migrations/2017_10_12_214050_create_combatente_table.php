@@ -23,6 +23,8 @@ class CreateCombatenteTable extends Migration
             $table->integer('numeroCombatente');
             $table->integer('provincias_id')->unsigned();
             $table->foreign('provincias_id')->references('id')->on('provincias');
+            $table->integer('users_id')->unsigned()->nullable();
+            $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
