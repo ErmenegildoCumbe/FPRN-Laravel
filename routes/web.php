@@ -27,6 +27,9 @@ Route::resource('user', 'UserController');
 Route::get('logar', function () {
     return view('login');
 });
+Route::get('admin', function () {
+    return view('admin.index');
+});
 Route::get('/combatentesComplete', 'CombatenteController@autocomplete')->name('combatenteauto');
 Route::get('/pedidosComplete', 'PedidoemprestimoController@autocomplete')->name('pedidoauto');
 

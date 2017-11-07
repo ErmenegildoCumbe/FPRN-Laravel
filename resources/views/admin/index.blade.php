@@ -1,12 +1,12 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-ob_start();
-?>
+@extends('layouts.template')
+
+@section('content')
+
 
 <div class="row">
     <div class="span6">
         <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
+            <div class="widget-header" style="background-color: #0098d0;color: #ffffff"> <i class="icon-list-alt"></i>
                 <h3> Pedidos de Emprestimos</h3>
             </div>
             <!-- /widget-header -->
@@ -15,7 +15,7 @@ ob_start();
                     <div class="widget-content">
                         <h6 class="bigstats">Numero de pedidos pre aprovados e por serem avaliados pela direcao</h6>
                         <div id="big_stats" class="cf">
-                            <div class="stat"> <i class="icon-anchor"></i> <span class="value"><?php echo $numPedidosPorAvaliar ?></span> 
+                            <div class="stat"> <i class="icon-anchor"></i> <span class="value"><?php 789//echo $numPedidosPorAvaliar ?></span> 
                             </div>
                             <!-- .stat --> 
                         </div>
@@ -29,7 +29,7 @@ ob_start();
     </div>
     <div class="span6">
         <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
+            <div class="widget-header" style="background-color: #0098d0;color: #ffffff"> <i class="icon-list-alt"></i>
                 <h3> Emprestimos</h3>
             </div>
             <!-- /widget-header -->
@@ -38,7 +38,7 @@ ob_start();
                     <div class="widget-content">
                         <h6 class="bigstats">Numero de emprestimos em pagamento</h6>
                         <div id="big_stats" class="cf">
-                            <div class="stat"> <i class="icon-anchor"></i> <span class="value"><?php echo $numEmprestimosEmPagamento ?></span> </div>
+                            <div class="stat"> <i class="icon-anchor"></i> <span class="value"><?php 85// echo $numEmprestimosEmPagamento ?></span> </div>
                             <!-- .stat -->
                         </div>
                     </div>
@@ -50,7 +50,7 @@ ob_start();
     </div>
     <div class="span6">
         <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
+            <div class="widget-header" style="background-color: #0098d0;color: #ffffff"> <i class="fa icon-list-alt"></i>
                 <h3> Utilizadores</h3>
             </div>
             <!-- /widget-header -->
@@ -59,7 +59,7 @@ ob_start();
                     <div class="widget-content">
                         <h6 class="bigstats">Numero total de funcionarios autoriazados a usar o sistema</h6>
                         <div id="big_stats" class="cf">
-                            <div class="stat"> <i class="icon-user"></i> <span class="value"><?php echo $numUtilizador ?></span> </div>
+                            <div class="stat"> <i class="icon-user"></i> <span class="value"><?php 45//echo $numUtilizador ?></span> </div>
                             <!-- .stat --> 
                         </div>
                     </div>
@@ -72,9 +72,5 @@ ob_start();
     </div>
 </div>
 <!-- /row -->
-<?php
-$data['conteudo'] = ob_get_contents();
-ob_end_clean();
-$this->load->view("dir/template/template", $data);
-?>
+@endsection
 

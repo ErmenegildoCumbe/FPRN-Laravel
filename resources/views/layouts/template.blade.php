@@ -68,8 +68,7 @@
                                 </ul>
                             </li>
                             
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa icon-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset(Auth::user()->foto) }}" alt="perfil" style="width: 32px; height: 32px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;"> <span>{{ Auth::user()->name }}</span>  <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Perfil</a></li>
                                     <li><a href="{{ route('logout') }}"
@@ -99,7 +98,7 @@
                 <div class="container">
                     <ul class="mainnav">
                         <li class="active"><a href=""><i class="fa icon-dashboard"></i><span>Dashboard</span> </a> </li>
-                        <li><a href=""><i class="fa icon-list-alt"></i><span>Reportes</span> </a> </li>
+                        <li><a href="/admin"><i class="fa icon-list-alt"></i><span>Reportes</span> </a> </li>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa icon-user"></i><span>Motuario</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/">Registar Pedido</a></li>
