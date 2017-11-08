@@ -15,3 +15,32 @@ section.success {
 .tama {
 	
 }
+.pedido:hover {
+	background-color: #c7e0f4;
+	text-decoration: none; 
+}
+.pedido {
+	background-color: #ffffff; 
+	border-bottom: solid; 
+	padding: 5px;
+}
+.pedido a {
+	
+	text-decoration: none; 
+}
+.pedido a:active {
+	color: none;
+	text-decoration: none; 
+}
+.pedido a:visited {
+	color: #000000 !important;
+	text-decoration: none; 
+}
+.pedido a:link {
+   color:inherit;
+}
+.pedidodetalhes {
+	background-color: #ffffff; 
+	padding: 5px;
+}
+

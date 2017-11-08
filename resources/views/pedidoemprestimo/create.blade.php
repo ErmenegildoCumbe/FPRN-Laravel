@@ -202,8 +202,10 @@
                     // $('#sucesso').html('Projecto Adicionado com sucesso').fadeIn().delay(4000).fadeOut('show');
                     $('#sucesso').text("Projecto Adicionado com sucesso");
                     $("#sucesso").append("<img id='theImg' src='{{ asset('img/project.png') }}'/>");
-                    //document.getElementById("montante").innerHTML = $('#custoProjecto').val();
-                    //document.getElementById("tempoProposto").innerHTML = $('#duracaoProjecto').val();
+                    document.getElementById("montante").value = $('#custoProjecto').val();
+                    document.getElementById("tempoProposto").value = $('#duracaoProjecto').val();
+                    //document.getElementById("montante").disabled=true;
+                    //document.getElementById("tempoProposto").disabled=true;
                 },
                 error: function (error) {
                     console.log(error);

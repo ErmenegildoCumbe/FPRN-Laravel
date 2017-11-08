@@ -30,6 +30,8 @@ Route::get('logar', function () {
 Route::get('admin', function () {
     return view('admin.index');
 });
+Route::get('recebidos', 'PedidoemprestimoController@paraaprovacao');
+
 Route::get('/combatentesComplete', 'CombatenteController@autocomplete')->name('combatenteauto');
 Route::get('/pedidosComplete', 'PedidoemprestimoController@autocomplete')->name('pedidoauto');
 

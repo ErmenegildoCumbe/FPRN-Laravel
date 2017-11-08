@@ -1,89 +1,103 @@
 @extends('layouts.template')
 
 @section('content')
-
-<div class="row">
-    <div class="span12">
-        <!--        <div class="well">
-                    <select id="sexo">
-                        <option>masculino</option>
-                        <option>femenino</option>
-                    </select>
-                </div>-->
-
-        <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-th-list"></i>
-                <h3>Lista de Pedidos</h3>              
-                <input id="procurar" type="text" class="pull-right search-query" placeholder="Procurar por nomes..." style="margin-top: 6px; margin-right: 6px">
+<!-- asside -->
+<div class="container">
+    <div class="row">
+        <h3>Lista de pedidos para aqui!!...</h3>
+        <div class="col-md-4 " style="overflow-y:auto; height: 480px;">
+            
+             @foreach($listaPedidos as $value)
+             <!-- <div class="container"> -->
+               <div class="row pedido" style="">
+                    <div class="col-md-2">
+                        <img src="{{ asset($value->user->foto) }}" alt="perfil" style="width: 32px; height: 32px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;">
+                    </div>
+                    <div class="col-md-10">
+                        <a href="#" style="cursor: default;" onclick="detalhes('{{ $value->id }}')">
+                        <div style="">
+                            <h4>  {{ $value->combatente->nome }} </h4>
+                        </div>
+                        <div>
+                            <h4>Linha de Credito</h4>
+                            <h5> {{ $value->linhacredito->designacao }} </h5>
+                        </div>
+                        </a>
+                    </div>
+                   
+               </div>                                   
+            <!-- </div> -->                 
+                                 
+            @endforeach       
+        
+                    
+        </div>
+        <!-- asside -->
+        <!-- <h2>Detalhes do pedido  </h2> -->
+        <div class="col-md-8" >
+            <div class="row pedidodetalhes" style="height: 480px;">
+                <div class="col-md-2">
+                    <img src="{{ asset(Auth::user()->foto) }}" alt="perfil" style="width: 50px; height: 50px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;">
+                </div>
+                <div class="col-md-10">
+                    <div>
+                        <h4> Nome do Combatente: </h4> <span id="nome"></span>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    <div>
+                        Ficheiro Anexo ao projecto
+                    </div>
+                </div>
             </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-                <table id="tabela" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Nome </th>
-                            <th> Montante Requisitado </th>
-                            <th> Montante Disponibilizado</th>
-                            <th>Estado</th>
-                            <th class="td-actions"> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($listaPedidos as $value): ?>
-                            <tr>
-                                <td> <?php echo $value->nome . " " . $value->apelido ?> </td>
-                                <td> <?php echo $value->montante ?> </td>
-                                <td><?php echo $value->montanteDisponibilizado; ?></td>
-                                <?php if ($value->pedidoestado == 0) { ?>
-                                    <td><span class="btn-warning btn-small">pendente</span></td>
-                                <?php } ?>
-                                <?php if ($value->pedidoestado == 1) { ?>
-                                    <td><span class="btn-info btn-small">em avaliacao</span></td>
-                                <?php } ?>
-                                <?php if ($value->pedidoestado == 2) { ?>
-                                    <td><span class="btn-primary btn-small">pre-aprovado</span></td>
-                                <?php } ?>
-                                <?php if ($value->pedidoestado == 3) { ?>
-                                    <td><span class="btn-success btn-small">aprovado</span></td>
-                                <?php } ?>
-                                <?php if ($value->pedidoestado == 4) { ?>
-                                    <td><span class="btn-danger btn-small">reprovado</span></td>
-                                <?php } ?>
-                                <td class="td-actions">
-                                    <a href="<?php //echo site_url("PedidoEmprestimo_controller/aprovarDir/$value->idEmprestimo/$value->idPedidoEmprestimo") ?>" class="btn btn-success btn-small"><i class="icon-ok"></i></a>
-                                    <a href="<?php //echo site_url("PedidoEmprestimo_controller/reprovarDir/$value->idEmprestimo/$value->idPedidoEmprestimo") ?>" class="btn btn-danger btn-small"><i class="icon-remove"></i></a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /widget-content --> 
+
         </div>
     </div>
+    
 </div>
-<!-- /row -->
 
-<!--<script type="text/javascript">
-    $(function () {
-        $("#procurar").keyup(function () {
-            var index = $(this).parent().index();
-            var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
-            var valor = $(this).val().toUpperCase();
-            $("#tabela tbody tr").show();
-            $(nth).each(function () {
-                if ($(this).text().toUpperCase().indexOf(valor) < 0) {
-                    $(this).parent().hide();
+
+
+<!-- visualizacao do content -->
+
+
+
+
+<script type="text/javascript">
+// Visualizacao de talhes do pedido de emprestimo...
+    function detalhes(cod){
+            //console.log(cod);
+            var dat = cod;
+        //console.log(dat);
+         $.ajax({
+                type: 'jax',
+                method: 'get',
+                url: "{{ route('detail') }}",
+                data: 'dat='+dat,
+                //async: false,
+                dataType: 'json',
+                success: function (resposta) {
+                    
+                    //document.getElementById("numpedi").innerHTML = resposta.id;
+                    document.getElementById("nome").innerHTML = resposta.combatente.nome;
+                    document.getElementById("nome").innerHTML += " "+resposta.combatente.apelido;
+                    //document.getElementById("linhacred").innerHTML = resposta.linhacredito.designacao;
+                    //document.getElementById("numcomb").innerHTML = resposta.combatente.numeroCombatente;
+                    //document.getElementById("motante").innerHTML = resposta.montante;
+                    //document.getElementById("data").innerHTML = resposta.data;
+                    //document.getElementById("funcio").innerHTML = resposta.user.name;
+                   
+                },
+                error: function (er) {
+                    //$("#sucesso").load(location.href + " #sucesso>*", "");
+                    //$('#sucesso').text('Projecto nao foi gravado');
+                    alert("Ocoreu algum erro...");
+                    console.log(er);
                 }
             });
-        });
-
-        $("#procurar").blur(function () {
-            $(this).val("");
-        });
-    });
-</script>-->
-<script type="text/javascript">
+        }
+// Fim da Visualizacao de talhes do pedido de emprestimo...
     $("#procurar").keyup(function () {
 //split the current value of searchInput
         var data = this.value.split(" ");
@@ -124,6 +138,8 @@
             $("#tabela td.sexo:contains('" + $(this).val() + "')").parent().show();
             $("#tabela td.sexo:not(:contains('" + $(this).val() + "'))").parent().hide();
         });
+
+        
 
     });
 </script>

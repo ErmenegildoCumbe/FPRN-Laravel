@@ -177,5 +177,10 @@ class PedidoemprestimoController extends Controller
          //return view('combatentes.index');
         //return Response($outro);
     }
+
+    public function paraaprovacao(){
+        $listaPedidos = Pedidoemprestimo::all();
+        return view('admin.pedidosemprestimos', compact('listaPedidos'));
+    }
     
 }

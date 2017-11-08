@@ -13,7 +13,7 @@
               
                <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
                <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-                <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+                
               <link href="{{ asset('css/pages/dashboard.css') }}" rel="stylesheet">
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
               <!--  <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> -->
@@ -29,6 +29,7 @@
 
         <!--css de autocomplete-->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
 
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
         <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
@@ -111,6 +112,7 @@
                                 <li><a href="{{ route('combatente.index') }}">Listar Combantente</a></li>
                             </ul>
                         </li>
+                        <li><a href="/recebidos"><i class="fa icon-list-alt"></i><span>Lista de Pedidos</span> </a> </li>
                     </ul>
                 </div>
                 <!-- /container --> 
@@ -124,8 +126,8 @@
         <div class="row tama">
             @yield('page')
         </div>
-        <div class="main">
-            <div class="main-inner">
+        <!-- <div class="main">
+            <div class="main-inner"> -->
                 <div class="container">
                     <div class="row">
                         <!--Main contente-->
@@ -133,9 +135,9 @@
                     </div>
                 </div>
                 <!-- /container --> 
-            </div>
+            <!-- </div> -->
             <!-- /main-inner --> 
-        </div>
+        <!-- </div> -->
         <!-- /main -->
         <div class="extra">
             <div class="extra-inner">
