@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Projecto;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class ProjectoController extends Controller
 {
@@ -41,7 +42,13 @@ class ProjectoController extends Controller
        $projecto->publicoAlvo = $request->publicoAlvo;
        $projecto->duracaoProjecto = $request->duracaoProjecto;
        $projecto->custoProjecto = $request->custoProjecto;
-       $projecto->anexo = $request->userfile;
+       // $projecto->anexo = $request->file('userfile')->getClientOriginalName();
+       if ($request->hasFile('userfile')) {
+          $projecto->anexo = $request->userfile->store('public/docs');
+
+          }
+       //  //$projecto->anexo = $request->userfile->extension();
+       // $request->file('userfile')->move( base_path . 'public/docs', $userfile->getClientOriginalName());
        $projecto->areaactuacaos_id = $request->AreaActuacaoId;
        $projecto->save();
 

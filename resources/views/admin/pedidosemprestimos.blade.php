@@ -39,15 +39,19 @@
                 <div class="col-md-2">
                     <img src="{{ asset(Auth::user()->foto) }}" alt="perfil" style="width: 50px; height: 50px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;">
                 </div>
-                <div class="col-md-10">
-                    <div>
-                        <h4> Nome do Combatente: </h4> <span id="nome"></span>
+                <div class="col-md-10" >
+                    <div style="height: 200px;">
+                        <h4> Nome do Combatente: </h4> <span id="nome"></span> <br>
+                        <b>Contacto</b>: <span id="contact"></span> <br>
+                        <b>Sexo</b>: <span id="sex"></span> <br>
+                        <b>Provincia</b>: <span id="prov"></span> <br>
+                        <b>Numero de Combatente</b>: <span id="nucomb"></span> <br>
                     </div>
                     <div>
                         
                     </div>
-                    <div>
-                        Ficheiro Anexo ao projecto
+                    <div style="height: 200px;" >
+                       <b> Ficheiro Anexado ao projecto </b>
                     </div>
                 </div>
             </div>
@@ -82,6 +86,11 @@
                     //document.getElementById("numpedi").innerHTML = resposta.id;
                     document.getElementById("nome").innerHTML = resposta.combatente.nome;
                     document.getElementById("nome").innerHTML += " "+resposta.combatente.apelido;
+                    document.getElementById("contact").innerHTML = resposta.combatente.telefone;
+                    document.getElementById("sex").innerHTML = " "+resposta.combatente.sexo;
+                    document.getElementById("prov").innerHTML = " "+resposta.combatente.provincia.provincia;
+                    document.getElementById("nucomb").innerHTML = " "+resposta.combatente.numeroCombatente;
+                    //document.getElementById("nome").innerHTML += " "+resposta.combatente.apelido;
                     //document.getElementById("linhacred").innerHTML = resposta.linhacredito.designacao;
                     //document.getElementById("numcomb").innerHTML = resposta.combatente.numeroCombatente;
                     //document.getElementById("motante").innerHTML = resposta.montante;

@@ -131,8 +131,9 @@
             <div class="modal-header" style="background-color: #0098d0;color: #ffffff">
                 <h4 class="modal-title" id="myModalLabel">ADICIONAR O PROJECTO</h4>
             </div> 
-            <form id="myFormProjecto" action=""  method="post">
+            <form id="myFormProjecto" action=""  method="post"  enctype="multipart/form-data">
                 {{ csrf_field() }}
+
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="tituloProjecto">Titulo do Projecto</label>
@@ -188,14 +189,16 @@
     $(function () {
         //Form Projectoaction... 
         $('#btnAddProjecto').click(function () {
-            var data = $('#myFormProjecto').serialize();
+            var data = new FormData($('#myFormProjecto')[0]);// $('#myFormProjecto').serialize();
             //console.log(data);
             $.ajax({
                 type: 'jax',
                 method: 'post',
                 url: "{{ route('projecto.store')}}",
                 data: data,
-                //async: false,
+                processData: false,
+                contentType: false,
+                async: true,
                 dataType: 'json',
                 success: function (resposta) {
                     $('input[name="projectoId"]').val(resposta);
