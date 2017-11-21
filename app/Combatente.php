@@ -15,7 +15,7 @@ class Combatente extends Model
    		}
 
    	public function provincia(){
-   		return $this->belongsTo('App\Provincia', 'provincias_id');
+   		return $this->belongsTo('App\Provincia', 'provincias_id')->withDefault();
    	}	
 
    	public function user(){

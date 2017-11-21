@@ -8,4 +8,7 @@ class Areaactuacao extends Model
 {
    protected $fillable = ['areaactuacaofundo'];
    
+   public function projectos(){
+        return $this->hasMany('App\Projecto','areaactuacaos_id');
+    }
 }

@@ -36,22 +36,59 @@
         <!-- <h2>Detalhes do pedido  </h2> -->
         <div class="col-md-8" >
             <div class="row pedidodetalhes" style="height: 480px;">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <img src="{{ asset(Auth::user()->foto) }}" alt="perfil" style="width: 50px; height: 50px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;">
                 </div>
-                <div class="col-md-10" >
-                    <div style="height: 200px;">
-                        <h4> Nome do Combatente: </h4> <span id="nome"></span> <br>
-                        <b>Contacto</b>: <span id="contact"></span> <br>
-                        <b>Sexo</b>: <span id="sex"></span> <br>
-                        <b>Provincia</b>: <span id="prov"></span> <br>
-                        <b>Numero de Combatente</b>: <span id="nucomb"></span> <br>
-                    </div>
-                    <div>
+                <div class="col-md-11 " >
+                    <div style="">
+                        <div class=" widget-header">
+                             <h2>Dados do Combatente</h2>
+                        </div>
+                        <div id="divnome">
+                            <h4> Nome do Combatente: </h4> <span id="nome"></span> <br>
+                        </div>
+                        <div id="divcontact">
+                             <b>Contacto</b>: <span id="contact"></span> <br> 
+                        </div>
+                        <div id="divsex">
+                          <b>Sexo</b>: <span id="sex"></span> <br>
+                        </div>
+                        <div id="divprov">
+                             <b>Provincia</b>: <span id="prov"></span> <br> 
+                        </div>
+                        <div id="divnucomb">
+                           <b>Numero de Combatente</b>: <span id="nucomb"></span> <br>
+                        </div>
                         
                     </div>
-                    <div style="height: 200px;" >
-                       <b> Ficheiro Anexado ao projecto </b>
+                    
+                    <div style="" >
+                        <div class=" widget-header">
+                            <h2>Dados do Pedido de Emprestimo</h2>
+                        </div>
+                        <div id="divtitulo">
+                            <h4> Titulo do Projecto: </h4> <span id="titulo"></span> <br>
+                        </div>
+                        <div id="divobjctivo">
+                            <h4> Objectivo: </h4> <span id="objctivo"></span> <br>
+                        </div>
+                        <div id="divpalvo">
+                           <h4> Publico-alvo: </h4> <span id="palvo"></span> <br> 
+                        </div>
+                        <div id="divtempo">
+                            <h4> Duraçao: </h4> <span id="tempo"></span> <br>
+                        </div>
+                        <div id="divvalor">
+                            <h4> Custo: </h4> <span id="valor"></span> <br>
+                        </div>
+                        <div id="divareaactua">
+                           <h4> Area de actuaçao: </h4> <span id="areaactua"></span> <br> 
+                        </div>
+                        <div id="paraficheiro">
+                            <b> Ficheiro Anexado ao projecto </b>
+                            <input class="btn btn-primary" type="button" name="ficheiro" id="ficheiro" value="Ler Ficheiro" >
+                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -90,12 +127,28 @@
                     document.getElementById("sex").innerHTML = " "+resposta.combatente.sexo;
                     document.getElementById("prov").innerHTML = " "+resposta.combatente.provincia.provincia;
                     document.getElementById("nucomb").innerHTML = " "+resposta.combatente.numeroCombatente;
-                    //document.getElementById("nome").innerHTML += " "+resposta.combatente.apelido;
-                    //document.getElementById("linhacred").innerHTML = resposta.linhacredito.designacao;
-                    //document.getElementById("numcomb").innerHTML = resposta.combatente.numeroCombatente;
-                    //document.getElementById("motante").innerHTML = resposta.montante;
-                    //document.getElementById("data").innerHTML = resposta.data;
-                    //document.getElementById("funcio").innerHTML = resposta.user.name;
+                    //Dados do projecto...
+                    if (resposta.linhacredito.id== 1) {
+                         document.getElementById("divtitulo").style.display="none";
+                    document.getElementById("divobjctivo").style.display="none";
+                     document.getElementById("divpalvo").style.display="none";
+                     document.getElementById("divareaactua").style.display="none";
+                     document.getElementById("paraficheiro").style.display="none";
+                    }
+                    else{
+                         document.getElementById("divtitulo").style.display="inline";
+                    document.getElementById("divobjctivo").style.display="inline";
+                     document.getElementById("divpalvo").style.display="inline";
+                     document.getElementById("divareaactua").style.display="inline";
+                     document.getElementById("paraficheiro").style.display="inline";
+                     document.getElementById("areaactua").innerHTML = resposta.projecto.area.areaactuacaofundo;
+                    }
+                    document.getElementById("titulo").innerHTML = resposta.projecto.tituloProjecto;
+                    document.getElementById("objctivo").innerHTML = resposta.projecto.objectivo;
+                    document.getElementById("palvo").innerHTML = resposta.projecto.publicoAlvo;
+                    document.getElementById("tempo").innerHTML = resposta.tempoProposto;
+                    document.getElementById("valor").innerHTML = resposta.montante;
+                    
                    
                 },
                 error: function (er) {

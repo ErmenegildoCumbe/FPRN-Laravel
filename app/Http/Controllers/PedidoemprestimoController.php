@@ -7,6 +7,8 @@ use App\Combatente;
 use App\Areaactuacao;
 use Illuminate\Http\Request;
 use Auth;
+use PDF;
+
 
 class PedidoemprestimoController extends Controller
 {
@@ -149,7 +151,7 @@ class PedidoemprestimoController extends Controller
     }
 
     public function getall(){
-        $pedidos = Pedidoemprestimo::all();
+        $pedidos = Pedidoemprestimo::orderBy('created_at', 'DESC')->get();
         //echo  $pedidos;
          return view('pedidoemprestimo.lista', compact('pedidos'));
         //return echo "Dadd";
@@ -182,5 +184,13 @@ class PedidoemprestimoController extends Controller
         $listaPedidos = Pedidoemprestimo::all();
         return view('admin.pedidosemprestimos', compact('listaPedidos'));
     }
+
+    public function dom(){
+        
+
+    $pdf = PDF::loadView('teste');
+    return $pdf->download('primeiroviaDom.pdf');
+    }
+
     
 }
