@@ -16,30 +16,33 @@
                     <div class="row">
                         <div class="span6">
                             <div class="widget big-stats-container">
-                                <div class="widget-content" style="padding:10px;">
+                                <div class="widget-content" style="">
                                     <div>
-                                         @foreach ($pedido as $value)
+                                         
                                             <form class="form-horizontal">
                                             	{{ csrf_field() }}
                                                 <fieldset>
                                                     <div class="control-group">											
                                                         <label class="control-label" for="firstname">Rendimento</label>
                                                         <div class="controls">
-                                                            <input class="span4" id="rendimento" placeholder="Montante Requisitado" value="{{ $value->rendimento }}" disabled/>	
+                                                            <input class="span4" id="rendimento1"  value="{{ $pedido->combatente->rendimento }}" disabled/>
+                                                            <input type="hidden" class="span4" id="rendimento"  value="{{ $pedido->combatente->rendimento }}" />
                                                         </div> <!-- /controls -->				
                                                     </div> <!-- /control-group -->
 
                                                     <div class="control-group">											
                                                         <label class="control-label" for="firstname">Montante Requisitado</label>
                                                         <div class="controls">
-                                                            <input class="span4" id="montante" placeholder="Montante Requisitado" value="{{ $value->montante }} "/>	
+                                                            <input class="span4" id="montante1" value="{{ $pedido->montante }} " disabled/>
+                                                            <input type="hidden" class="span4" id="montante" value="{{ $pedido->montante }} " />	
                                                         </div> <!-- /controls -->				
                                                     </div> <!-- /control-group -->
 
                                                     <div class="control-group">											
                                                         <label class="control-label" for="lastname">Tempo Pagamento Proposto</label>
                                                         <div class="controls">
-                                                            <input class="span4" id="tempoproposto" placeholder="Tempo Pagamento Proposto" value="{{ $value->tempoProposto }}" />
+                                                            <input class="span4" id="tempoproposto1" placeholder="Tempo Pagamento Proposto" value="{{ $pedido->tempoProposto }}" disabled />
+                                                            <input type="hidden" class="span4" id="tempoproposto" value="{{ $pedido->tempoProposto }}" />
                                                         </div> <!-- /controls -->				
                                                     </div> <!-- /control-group -->
 
@@ -47,16 +50,17 @@
                                                         <button type="button" class="btn btn-primary" onclick="avaliarLoading()">Avaliar</button> 
                                                         <button  class="btn">Restaurar</button>
     <!--                                                        <a class="btn btn-success" href="<?php //echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" >Aprovar</a> -->
-                                                        <a class="btn btn-success" href="#myModal" role="button" data-toggle="modal">Aprovar</a>
+                                                        <!-- <a class="btn btn-success" href="#myModal" role="button" data-toggle="modal">Aprovar</a> -->
+                                                        <input type="button" class="btn btn-success" id="paraAprovar" value="Aprovar" name="">
                                                     </div> <!-- /form-actions -->
                                                 </fieldset>
                                             </form>
-                                         @endforeach
+                                         
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="span6">
+                        <div class="span5">
                             <div class="row">
                                 <div id="resultadoAvalicao" class="span6">
 
@@ -83,7 +87,7 @@
 <!-- /row -->
 
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Confirmar valor a ser disponibilizado</h3>
@@ -113,6 +117,9 @@
 
 <!-- Scripts -->
 <script type="text/javascript">
+	 $('#paraAprovar').click(function () {
+	 	$('#myModal').modal('show');
+	 });
     function avaliarLoading() {
         $('#resultadoAvalicao').empty();
         $('#resultado1').empty();
@@ -133,6 +140,9 @@
         var montante = $('#montante').val();
         var tempo = $('#tempoproposto').val();
         var rendimento = $('#rendimento').val();
+        console.log(montante);
+        console.log(tempo);
+        console.log(rendimento);
 
         var x = rendimento / 3;
         var y = (parseFloat(montante) + parseFloat((montante * 0.45))) / parseFloat(tempo);
@@ -166,7 +176,7 @@
                 var s = '';
                 s += '<h3 style="margin-top: 55px">Tempo Minimo Necessario</h3>';
                 s += '<hr>'
-                s += '<h3 style="margin-left: 35%">Nao Viavel</h3>';
+                s += '<h3 style="margin-left: 35%">Nao Viável</h3>';
                 $('#resultado1').append(s);
 
                 var vp = (((parseFloat(rendimento) / 3) * parseFloat(tempo)) * 100) / 145;

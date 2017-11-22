@@ -45,7 +45,7 @@ class PedidoemprestimoController extends Controller
        $pedidoemprestimo = new Pedidoemprestimo;
        $pedidoemprestimo->montante = $request->montante;
        $pedidoemprestimo->data = $data;
-       $pedidoemprestimo->rendimento = $request->rendimento;
+      // $pedidoemprestimo->rendimento = $request->rendimento;
        $pedidoemprestimo->tempoProposto = $request->tempoProposto;
        $pedidoemprestimo->observacao = $request->observacao;
        $pedidoemprestimo->pedidoestado = 1;
@@ -192,8 +192,13 @@ class PedidoemprestimoController extends Controller
     return $pdf->download('primeiroviaDom.pdf');
     }
 
-    public function avaliar(){
-        $pedido = Pedidoemprestimo::all();
+    // public function avaliar(){
+    //     $pedido = Pedidoemprestimo::all();
+    //     return view('admin.avaliacao',compact('pedido'));
+    // }
+
+    public function avaliar2($id){
+        $pedido = Pedidoemprestimo::findOrFail($id);
         return view('admin.avaliacao',compact('pedido'));
     }
 

@@ -64,8 +64,10 @@
                     
                     <div style="" >
                         <div class=" widget-header">
-                            <h2>Dados do Pedido de Emprestimo</h2>
+                            <h2>Dados do Pedido de Emprestimo</h2> <span>
                         </div>
+                        <input type="button" class="btn btn-success" id="paraAnalizar" value="Avaliar" >
+                            <input type="hidden" class="span4" id="iddopedido" value="0" /> </span>
                         <div id="divtitulo">
                             <h4> Titulo do Projecto: </h4> <span id="titulo"></span> <br>
                         </div>
@@ -108,7 +110,7 @@
 <script type="text/javascript">
 // Visualizacao de talhes do pedido de emprestimo...
     function detalhes(cod){
-            //console.log(cod);
+            document.getElementById("iddopedido").value=cod;
             var dat = cod;
         //console.log(dat);
          $.ajax({
@@ -159,6 +161,11 @@
                 }
             });
         }
+         $('#paraAnalizar').click(function () {
+            var tm= document.getElementById("iddopedido").value;
+            //"{{URL::to('pedidoanalise/')}}"+"/"+tm;
+        window.location="{{URL::to('pedidoanalise/')}}"+"/"+tm;
+     });
 // Fim da Visualizacao de talhes do pedido de emprestimo...
     $("#procurar").keyup(function () {
 //split the current value of searchInput

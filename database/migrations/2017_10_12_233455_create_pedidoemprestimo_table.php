@@ -17,9 +17,9 @@ class CreatePedidoemprestimoTable extends Migration
             $table->increments('id');
             $table->double('montante');
             $table->date('data');
-            $table->double('rendimento');
             $table->integer('tempoProposto');
             $table->text('observacao');
+            //$table->double('rendimento');
             $table->integer('pedidoestado');
             $table->integer('combatentes_id')->unsigned();
             $table->foreign('combatentes_id')->references('id')->on('combatentes');

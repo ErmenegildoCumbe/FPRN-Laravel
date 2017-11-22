@@ -21,6 +21,7 @@ class CreateCombatenteTable extends Migration
             $table->string('sexo', 40);
             $table->string('tipoMutuario', 50);
             $table->double('rendimento');
+            //$table->double('rendimento', 8, 4);
             $table->integer('numeroCombatente');
             $table->integer('provincias_id')->unsigned();
             $table->foreign('provincias_id')->references('id')->on('provincias');

@@ -127,7 +127,7 @@
                     //document.getElementById("tempoProposto").innerHTML = $('#duracaoProjecto').val();
                 },
                 error: function (error) {
-                   alert(error);
+                   console.log(error);
                 }
             });
         });

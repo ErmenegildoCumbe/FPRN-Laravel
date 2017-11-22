@@ -64,7 +64,7 @@ class CombatenteController extends Controller
         $combatente->provincias_id = $request->provincia;
         $combatente->users_id =$user->id;
         $combatente->save();
-
+        //$sucesso = "Gravado";
         return Response($combatente);
     }
 
@@ -135,5 +135,12 @@ class CombatenteController extends Controller
         }
         return Response($results);
 
+    }
+
+    public function indexado()
+    {
+        $combatentes = Combatente::all();
+
+       return view('combatentes.index', compact('combatentes'));
     }
 }

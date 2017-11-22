@@ -45,7 +45,8 @@
                                                 <div class="control-group">	
                                                     <label class="control-label" for="rendimento">Rendimento Mensal<sup></sup></label>
                                                     <div class="controls">
-                                                        <input class="span4" name="rendimento" id="rendimento" placeholder="Exemplo: 5000" required=""/>
+                                                        <input class="span4" name="rendimento1" id="rendimento1" value="{{ $combatente->rendimento }}" />
+                                                        <input type="hidden" class="span4" name="rendimento" id="rendimento" value="{{ $combatente->rendimento }}" />
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
@@ -125,9 +126,9 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <!-- <div class="modal-dialog" role="document">
+        <div class="modal-content"> -->
             <div class="modal-header" style="background-color: #0098d0;color: #ffffff">
                 <h4 class="modal-title" id="myModalLabel">ADICIONAR O PROJECTO</h4>
             </div> 
@@ -176,8 +177,8 @@
                     <button type="button" class="btn btn-primary" id="btnAddProjecto" data-dismiss="modal">Adicionar</button>
                 </div>  
             </form> 
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
 </div>
 <script>
 

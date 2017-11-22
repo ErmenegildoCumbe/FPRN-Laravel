@@ -14,7 +14,6 @@ class PedidoemprestimosTableSeeder extends Seeder
         DB::table('pedidoemprestimos')->insert([
            'montante' => '50000',
            'data' => '2017-01-25',
-           'rendimento' => '15000',
            'tempoProposto' => '8',
            'observacao' => 'que fala,estrovertida,confusa!!mas hey está a m carinho transmitido ontemdia do ',
            'pedidoestado' => '1',
@@ -27,7 +26,6 @@ class PedidoemprestimosTableSeeder extends Seeder
          DB::table('pedidoemprestimos')->insert([
            'montante' => '500000',
            'data' => '2017-01-20',
-           'rendimento' => '20000',
            'tempoProposto' => '18',
            'observacao' => 'que fala,estrovertida,confusa!!mas hey estárever o vosso carinho transmitido ontem dia do ',
            'pedidoestado' => '1',

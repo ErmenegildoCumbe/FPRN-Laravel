@@ -11,7 +11,7 @@
       <tr>
          <!--  <th>ID</th> -->
           <th>Nome</th>
-          <th>Rendimento</th>
+          <!-- <th>Rendimento</th> -->
           <th>Telefone</th>
           <th>Sexo</th>
           <th>Tipo de Mutuario</th>
@@ -23,8 +23,8 @@
  @foreach($combatentes as $combatente)
           <tr>
               <!-- <td>{{$combatente->id}}</td> -->
-              <td>{{$combatente->nome }} " " {{$combatente->apelido}}</td>
-              <td>{{$combatente->rendimento}}</td>
+              <td>{{$combatente->nome }}  {{$combatente->apelido}}</td>
+              <!-- <td>{{$combatente->rendimento}}</td> -->
               <td>{{$combatente->telefone}}</td>
               <td>{{$combatente->sexo}}</td>
               <!-- <td>{{$combatente->telefone}}</td> -->
@@ -33,7 +33,7 @@
 
               <td class="text-center"><a class='btn btn-info btn-xs' href="{{ route('combatente.edit',$combatente->id) }}">
                <span class="glyphicon glyphicon-edit"></span> Editar</a> 	 	
-               <a href="/eliminar-disciplina/{{$combatente->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+               <a href="/{{$combatente->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                {{ method_field('DELETE') }}
                </td>
           </tr>

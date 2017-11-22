@@ -8,7 +8,7 @@ use App\Linhacredito;
 
 class Pedidoemprestimo extends Model
 {
-	 protected $fillable = ['montante','data','rendimento','tempoProposto','observacao','pedidoestado','combatentes_id','linhacreditos_id','projectos_id','users_id'];
+	 protected $fillable = ['montante','data','tempoProposto','observacao','pedidoestado','combatentes_id','linhacreditos_id','projectos_id','users_id'];
 	 protected $with = ['combatente','linhacredito','user','projecto'];
 
     public function combatente(){
