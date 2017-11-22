@@ -15,8 +15,9 @@ class CombatentesTableSeeder extends Seeder
            'nome' => 'Antonio',
            'apelido' => 'Langa',
            'telefone' => '845241630',
-           'sexo' => 'M',
+           'sexo' => 'Masculino',
            'tipoMutuario' => 'Antigo Combatente',
+           'rendimento' => 7850,
            'numeroCombatente' => '142',
            'provincias_id' => '1'          
        ]);
@@ -25,8 +26,9 @@ class CombatentesTableSeeder extends Seeder
            'nome' => 'Carla',
            'apelido' => 'Tembe',
            'telefone' => '845241632',
-           'sexo' => 'F',
+           'sexo' => 'Feminino',
            'tipoMutuario' => 'Desmobilizado de Guerra',
+           'rendimento' => 10850,
            'numeroCombatente' => '441',
            'provincias_id' => '2'          
        ]);

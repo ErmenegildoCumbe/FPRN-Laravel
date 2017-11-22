@@ -11,7 +11,7 @@
       <tr>
          <!--  <th>ID</th> -->
           <th>Nome</th>
-          <th>Apelido</th>
+          <th>Rendimento</th>
           <th>Telefone</th>
           <th>Sexo</th>
           <th>Tipo de Mutuario</th>
@@ -23,8 +23,8 @@
  @foreach($combatentes as $combatente)
           <tr>
               <!-- <td>{{$combatente->id}}</td> -->
-              <td>{{$combatente->nome }}</td>
-              <td>{{$combatente->apelido}}</td>
+              <td>{{$combatente->nome }} " " {{$combatente->apelido}}</td>
+              <td>{{$combatente->rendimento}}</td>
               <td>{{$combatente->telefone}}</td>
               <td>{{$combatente->sexo}}</td>
               <!-- <td>{{$combatente->telefone}}</td> -->

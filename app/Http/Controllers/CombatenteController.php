@@ -59,6 +59,7 @@ class CombatenteController extends Controller
         $combatente->telefone = $request->telefone;
         $combatente->sexo = $request->sexo;
         $combatente->tipoMutuario = $request->tipoMutuario;
+        $combatente->rendimento = $request->rendimento;
         $combatente->numeroCombatente = $request->numeroCombatente;
         $combatente->provincias_id = $request->provincia;
         $combatente->users_id =$user->id;

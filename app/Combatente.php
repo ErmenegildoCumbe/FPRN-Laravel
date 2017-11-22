@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Combatente extends Model
 {
-	protected $fillable = ['nome','apelido','telefone','sexo','tipoMutuario','numeroCombatente','provincias_id','users_id']; 
+	protected $fillable = ['nome','apelido','telefone','sexo','tipoMutuario','rendimento','numeroCombatente','provincias_id','users_id']; 
 
 	protected $with = ['provincia','user'];
 

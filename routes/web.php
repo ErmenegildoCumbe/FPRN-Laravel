@@ -45,6 +45,7 @@ Route::get('/pesquisa', 'PedidoemprestimoController@viajson')->name('getmach');
 Route::get('/pedido/{id}', 'PedidoemprestimoController@paraimprimir')->name('impressao');
 Route::get('pedidoempresti', 'PedidoemprestimoController@getall')->name('pedidoempresti');
 Route::get('/test','PedidoemprestimoController@dom');
+Route::get('/avaliar','PedidoemprestimoController@avaliar');
 
 
 

@@ -18,39 +18,40 @@
                             <div class="widget big-stats-container">
                                 <div class="widget-content" style="padding:10px;">
                                     <div>
-                                        <?php foreach ($pedido as $value): ?>
+                                         @foreach ($pedido as $value)
                                             <form class="form-horizontal">
+                                            	{{ csrf_field() }}
                                                 <fieldset>
                                                     <div class="control-group">											
                                                         <label class="control-label" for="firstname">Rendimento</label>
                                                         <div class="controls">
-                                                            <input class="span4" id="rendimento" placeholder="Montante Requisitado" value="<?php echo $value->rendimento ?>" disabled/>	
+                                                            <input class="span4" id="rendimento" placeholder="Montante Requisitado" value="{{ $value->rendimento }}" disabled/>	
                                                         </div> <!-- /controls -->				
                                                     </div> <!-- /control-group -->
 
                                                     <div class="control-group">											
                                                         <label class="control-label" for="firstname">Montante Requisitado</label>
                                                         <div class="controls">
-                                                            <input class="span4" id="montante" placeholder="Montante Requisitado" value="<?php echo $value->montante ?>"/>	
+                                                            <input class="span4" id="montante" placeholder="Montante Requisitado" value="{{ $value->montante }} "/>	
                                                         </div> <!-- /controls -->				
                                                     </div> <!-- /control-group -->
 
                                                     <div class="control-group">											
                                                         <label class="control-label" for="lastname">Tempo Pagamento Proposto</label>
                                                         <div class="controls">
-                                                            <input class="span4" id="tempoproposto" placeholder="Tempo Pagamento Proposto" value="<?php echo $value->tempoProposto ?>" />
+                                                            <input class="span4" id="tempoproposto" placeholder="Tempo Pagamento Proposto" value="{{ $value->tempoProposto }}" />
                                                         </div> <!-- /controls -->				
                                                     </div> <!-- /control-group -->
 
                                                     <div class="form-actions">
                                                         <button type="button" class="btn btn-primary" onclick="avaliarLoading()">Avaliar</button> 
                                                         <button  class="btn">Restaurar</button>
-    <!--                                                        <a class="btn btn-success" href="<?php echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" >Aprovar</a> -->
+    <!--                                                        <a class="btn btn-success" href="<?php //echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" >Aprovar</a> -->
                                                         <a class="btn btn-success" href="#myModal" role="button" data-toggle="modal">Aprovar</a>
                                                     </div> <!-- /form-actions -->
                                                 </fieldset>
                                             </form>
-                                        <?php endforeach; ?>
+                                         @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +88,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Confirmar valor a ser disponibilizado</h3>
     </div>
-    <form action="<?php echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" method="post">
+    <form action="<?php //echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" method="post">
+    	{{ csrf_field() }}
         <div class="modal-body">
             <div class="form">
                 <Labe>Tempo Pagamento</Labe>
@@ -108,12 +110,14 @@
         </div>
     </form>
 </div>
+
+<!-- Scripts -->
 <script type="text/javascript">
     function avaliarLoading() {
         $('#resultadoAvalicao').empty();
         $('#resultado1').empty();
         $('#resultado2').empty();
-        var t = '<img style="margin-left: 25%" src="<?php echo base_url("assests/img/loading.gif") ?>"/>'
+        var t = '<img style="margin-left: 25%" src="{{ asset("img/loading.gif") }} "/>'
         $('#resultadoAvalicao').append(t);
         setTimeout(function () {
             avaliar();

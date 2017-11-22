@@ -192,5 +192,10 @@ class PedidoemprestimoController extends Controller
     return $pdf->download('primeiroviaDom.pdf');
     }
 
+    public function avaliar(){
+        $pedido = Pedidoemprestimo::all();
+        return view('admin.avaliacao',compact('pedido'));
+    }
+
     
 }

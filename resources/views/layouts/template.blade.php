@@ -113,6 +113,7 @@
                             </ul>
                         </li>
                         <li><a href="/recebidos"><i class="fa icon-list-alt"></i><span>Lista de Pedidos</span> </a> </li>
+                         <li><a href="/avaliar"><i class="fa icon-list-alt"></i><span>Avaliar Pedido</span> </a> </li>
                     </ul>
                 </div>
                 <!-- /container --> 

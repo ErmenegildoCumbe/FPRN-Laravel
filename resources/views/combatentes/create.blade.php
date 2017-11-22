@@ -41,6 +41,11 @@
                                                     <label for="numeroCombatente">Numero de Combatente</label>
                                                     <input class="form-control" name="numeroCombatente" id="numeroCombatente" placeholder="Exemplo: 4555557" required=""/>
 
+                                                </div> <!-- /control-group -->    
+                                                <div class="control-group form-group">                                         
+                                                    <label for="rendimento">Rendimento do Combatente</label>
+                                                    <input class="form-control" name="rendimento" id="rendimento" placeholder="Exemplo: 5000" required=""/>
+
                                                 </div> <!-- /control-group -->     
 
                                               
