@@ -202,5 +202,10 @@ class PedidoemprestimoController extends Controller
         return view('admin.avaliacao',compact('pedido'));
     }
 
+    public function estatisticas(){
+        //$pedido = Pedidoemprestimo::findOrFail($id);
+        return view('admin.reporters');
+    }
+
     
 }

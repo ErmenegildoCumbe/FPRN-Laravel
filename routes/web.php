@@ -49,7 +49,7 @@ Route::get('/test','PedidoemprestimoController@dom');
 Route::get('/pedidoanalise/{id}','PedidoemprestimoController@avaliar2')->name('pedidoanalise');
 
 Route::get('/indexado', 'CombatenteController@indexado')->name('indexado');
-
+Route::get('/reporter','PedidoemprestimoController@estatisticas');
 
 
 

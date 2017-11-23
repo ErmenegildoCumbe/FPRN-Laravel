@@ -45,8 +45,8 @@
 </div>
 <!-- /row -->
 
-<script src="<?php echo base_url("assests/highcharts/highcharts.js") ?>"></script> 
-<script src="<?php echo base_url("assests/highcharts/exporting.js") ?>"></script> 
+<script src="{{ asset('js/highcharts/highcharts.js') }}"></script> 
+<script src="{{ asset('js/highcharts/exporting.js') }}"></script> 
 
 
 <script type="text/javascript">
