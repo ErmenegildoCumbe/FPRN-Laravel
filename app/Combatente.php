@@ -8,7 +8,7 @@ class Combatente extends Model
 {
 	protected $fillable = ['nome','apelido','telefone','rendimento','sexo','tipoMutuario','numeroCombatente','provincias_id','users_id']; 
 
-	protected $with = ['provincia'];
+	protected $with = ['provincia','user'];
 
    public function pedidoemprestimo(){
    		return $this->hasMany('App\Pedidoemprestimo','combatentes_id');

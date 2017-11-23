@@ -140,9 +140,7 @@
         var montante = $('#montante').val();
         var tempo = $('#tempoproposto').val();
         var rendimento = $('#rendimento').val();
-        console.log(montante);
-        console.log(tempo);
-        console.log(rendimento);
+       
 
         var x = rendimento / 3;
         var y = (parseFloat(montante) + parseFloat((montante * 0.45))) / parseFloat(tempo);

@@ -45,21 +45,21 @@
                                                 <div class="control-group">	
                                                     <label class="control-label" for="rendimento">Rendimento Mensal<sup></sup></label>
                                                     <div class="controls">
-                                                        <input class="span4" name="rendimento1" id="rendimento1" value="{{ $combatente->rendimento }}" />
+                                                        <input class="span4" name="rendimento1" id="rendimento1" value="{{ $combatente->rendimento }}" disabled="true" />
                                                         <input type="hidden" class="span4" name="rendimento" id="rendimento" value="{{ $combatente->rendimento }}" />
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
-                                                <div class="control-group">											
+                                                <div class="control-group ">											
                                                     <label class="control-label" for="montante">Motante Solicitado<sup></sup></label>
-                                                    <div class="controls">
+                                                    <div class="controls ">
                                                         <input class="span4" name="montante" id="montante" placeholder="Exemplo: 40000" type="text" required=""/>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->
 
                                                 <div class="control-group">											
                                                     <label class="control-label" for="tempoProposto">Pagamento (Mensal)<sup></sup></label>
-                                                    <div class="controls">
+                                                    <div class="controls form-group">
                                                         <select class="span4" name="tempoProposto" id="tempoProposto">
                                                         <?php
                                                         for ($i = 3; $i <= 60; $i++) {
@@ -85,7 +85,7 @@
 
                                                 <div class="control-group">											
                                                     <label class="control-label" for="observacao">Observação </label>
-                                                    <div class="controls">
+                                                    <div class="controls form-group">
                                                         <textarea class="span4" name="observacao" id="observacao" placeholder="N/A"></textarea>
                                                     </div> <!-- /controls -->				
                                                 </div> <!-- /control-group -->

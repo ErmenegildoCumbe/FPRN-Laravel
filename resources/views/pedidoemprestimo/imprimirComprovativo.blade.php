@@ -50,8 +50,8 @@
                                         <td> {{ $pedidoemprestimo->montante }},00Mt</td>
                                     </tr>
                                     <tr>
-                                        <td>Declaração de rendimento mensal </td>
-                                        <td> {{ $pedidoemprestimo->rendimento }},00Mt</td>
+                                        <td>Declaração de rendimento mensal  </td>
+                                        <td>  {{ $pedidoemprestimo->combatente->rendimento }},00Mt</td>
                                     </tr>
                                     <tr>
                                         <td>Periodo de Pagamento</td>
