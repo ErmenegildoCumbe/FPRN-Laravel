@@ -31,7 +31,7 @@ Route::get('admin', function () {
     return view('admin.index');
 });
 Route::get('recebidos', 'PedidoemprestimoController@paraaprovacao');
-
+Route::get('pedidosaprovados', 'PedidoemprestimoController@aprovados');
 Route::get('/combatentesComplete', 'CombatenteController@autocomplete')->name('combatenteauto');
 Route::get('/pedidosComplete', 'PedidoemprestimoController@autocomplete')->name('pedidoauto');
 
@@ -50,6 +50,10 @@ Route::get('/pedidoanalise/{id}','PedidoemprestimoController@avaliar2')->name('p
 
 Route::get('/indexado', 'CombatenteController@indexado')->name('indexado');
 Route::get('/reporter','PedidoemprestimoController@estatisticas');
+Route::get('/gerarGrafico', 'PedidoemprestimoController@gerarGrafico');
+Route::post('/filtri/{filtro}', 'PedidoemprestimoController@dadosdofiltro');
+Route::get('/lermensagem/{id}', 'MensagemController@leitura');
+Route::get('/lerficheiro', 'PedidoemprestimoController@lerficheiro');
 
 
 

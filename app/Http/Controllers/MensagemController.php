@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Emprestimo;
-use App\Pedidoemprestimo;
 use Illuminate\Http\Request;
+use App\Mensagem;
 
-class EmprestimoController extends Controller
+class MensagemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,30 +35,32 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        $emprestimo = new Emprestimo;
-        $data = date('Y-m-d');
-        $emprestimo->dataAprovacao = $data;
-        $emprestimo->montanteDisponibilizado= $request->valor;
-        $emprestimo->tempoPagamento= $request->tempo;
-        $emprestimo->tempoPagamentoInicial= 3;
-        $emprestimo->pedidoemprestimos_id= $request->senha;
-        $emprestimo->valorMensal= $request->valormensal;
-        $emprestimo->emprestimoestado= 1;
-        $emprestimo->save();
-        $pedido = Pedidoemprestimo::findOrFail($request->senha);
-        $pedido->pedidoestado = 2;
-        $pedido->save();
-        $sucesso="Sucesso";
-        return $sucesso;
+       
+        $mensagem = new Mensagem;
+        $mensagem->assunto = $request->assunto;
+        $mensagem->observacao = $request->observacao;
+        $mensagem->valorpossivel = $request->valorpossivel;
+        $mensagem->remetente = Auth::id();
+        $mensagem->estado = 1;
+        //$user = User::where('email','=',$request->email)->first();
+        //$mensagem->receptor = $user->id;
+        // $menbro = Membro::where('grupos_id','=',$request->meusgrupos)
+        // ->where('users_id','=',$userid)
+        // ->first();
+        // $mensagem->membros_id = $menbro->id;
+        $mensagem->save();
+         //$su="sucesso";
+        
+        return response()->json($mensagem);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Emprestimo  $emprestimo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Emprestimo $emprestimo)
+    public function show($id)
     {
         //
     }
@@ -67,10 +68,10 @@ class EmprestimoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Emprestimo  $emprestimo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Emprestimo $emprestimo)
+    public function edit($id)
     {
         //
     }
@@ -79,10 +80,10 @@ class EmprestimoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Emprestimo  $emprestimo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Emprestimo $emprestimo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,11 +91,16 @@ class EmprestimoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Emprestimo  $emprestimo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Emprestimo $emprestimo)
+    public function destroy($id)
     {
         //
+    }
+
+     public function leitura($id)
+    {
+       
     }
 }

@@ -12,7 +12,7 @@
         <option value="tipomutuario">Tipo Requerente</option>
         <option value="sexo">Sexo</option>
     </select>
-    <i id="addParammeter" style="cursor: pointer; margin-left: 5px; margin-top: 5px;" class="icon-2x icon-plus-sign-alt"></i>
+    <i id="addParammeter" style="cursor: pointer; margin-left: 5px; margin-top: 5px;" class="fa icon-2x icon-plus-sign-alt">icon</i>
     <button class="btn btn-success pull-right" onclick="gerarGrafico()">Gerar Grafico</button>
 </div>
 
@@ -33,7 +33,11 @@
                 </div>
                 <!-- /widget-header -->
                 <div class="widget-content">
-                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto">
+                    	<canvas id="container" width="300">
+                    		
+                    	</canvas>
+                    </div>
                     <!-- /bar-chart -->
                 </div>
                 <!-- /widget-content -->
@@ -144,30 +148,67 @@
             }
 
         });
-</script>                
 
-
-<script type="text/javascript">
     function gerarGrafico() {
         /*  var j = listaParametro[0];
          alert(j);*/
         var listavalores = currentValue();
-
-        var url2 = "<?php echo site_url("Reporte_controller/gerarGrafico") ?>";
-        $.ajax({
-            url: url2,
-            type: "POST",
-            data: {parametro: listaParametro, valores: listavalores},
+        console.log(listavalores);
+        // var url2 = "/gerarGrafico";
+        // $.ajax({
+        //     url: "/gerarGrafico",
+        //     type: "POST",
+        //     data: {parametro: listaParametro, valores: listavalores},
+        //     success: function (data)
+        //     {
+        //         //alert("Sucesso");
+        //         chartBase(listaParametro, listavalores, jQuery.parseJSON(data));
+        //         //console.log(jQuery.parseJSON(data));
+        //     }
+        //     ,
+        //     error: function (jqXHR, textStatus, errorThrown)
+        //     {
+        //         alert('Error');
+        //         console.log(errorThrown);
+        //     }
+        // });
+         $.ajax({
+            url: "/gerarGrafico",
+            type: "get",
+            data:  listavalores,
             success: function (data)
             {
-                //alert("Sucesso");
-                chartBase(listaParametro, listavalores, jQuery.parseJSON(data));
-                //console.log(jQuery.parseJSON(data));
+               // console.log(data);
+               var combatente = [];
+               var valor = [];
+               for(var i=0;i<data.length;i++){
+               		combatente.push(data[i].combatente.nome);
+               		valor.push(data[i].montante);
+               }
+               var chartdata={
+               	labels: combatente,
+               	datasets:[
+               		{
+               			label: 'Valores Requesitados',
+               			backgroundColor: '#0099ff',
+               			borderColor: '#ff0000',
+               			hoverBackgroundColor: '#990066',
+               			data: valor
+               		}
+               	]
+               }
+
+               var ctx= $('container');
+               var bargraph = new Chart(ctx, {
+               		type: 'bar',
+               		data: chartdata
+               });
             }
             ,
-            error: function (jqXHR, textStatus, errorThrown)
+            error: function (errorThrown)
             {
                 alert('Error');
+                console.log(errorThrown);
             }
         });
     }
@@ -175,7 +216,7 @@
     function chartBase(listaParamentro, listaValor, dadosPedidos) {
         var filtro = listaParamentro[0];
 
-        var url = "<?php echo site_url("Reporte_controller") ?>" + "/" + filtro;
+        var url = "/filtri" + "/" + filtro;
         $.ajax({
             url: url,
             type: "POST",

@@ -181,7 +181,7 @@ class PedidoemprestimoController extends Controller
     }
 
     public function paraaprovacao(){
-        $listaPedidos = Pedidoemprestimo::all();
+        $listaPedidos = Pedidoemprestimo::where('pedidoestado','=',1)->get();
         return view('admin.pedidosemprestimos', compact('listaPedidos'));
     }
 
@@ -202,10 +202,37 @@ class PedidoemprestimoController extends Controller
         return view('admin.avaliacao',compact('pedido'));
     }
 
+    public function aprovados(){
+        $listaPedidos = Pedidoemprestimo::where('pedidoestado','=',2)->get();
+        
+        return view('admin.emprestimos', compact('listaPedidos'));
+    }
+
     public function estatisticas(){
         //$pedido = Pedidoemprestimo::findOrFail($id);
         return view('admin.reporters');
     }
 
+    public function gerarGrafico() {
+       
+
+        /* $listaTabelas = $this->input->post('parametro');
+          $listaValores = $this->input->post('valores'); */
+
+        $data = Pedidoemprestimo::all();
+
+        return Response($data);
+    }
+
+    public function dadosdofiltro($filtro){
+        $pedido = Pedidoemprestimo::all();
+        return Response($pedido);
+    }
+
+     public function lerficheiro($id){
+        $pedido = Pedidoemprestimo::findOrFail($id);
+        $url = $pedido->
+        return Response($pedido);
+    }
     
 }

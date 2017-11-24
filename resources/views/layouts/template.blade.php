@@ -10,6 +10,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
               rel="stylesheet">
+              <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
               
                <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
                <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -112,7 +113,13 @@
                                 <li><a href="{{ route('combatente.index') }}">Listar Combantente</a></li>
                             </ul>
                         </li>
-                        <li><a href="/recebidos"><i class="fa icon-list-alt"></i><span>Lista de Pedidos</span> </a> </li>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa icon-long-arrow-down"></i><span>Pedidos</span> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/recebidos"><i class="fa icon-list-alt"></i><span>Lista de Pedidos Abertos</span> </a> </li>
+                                <li><a href="/pedidosaprovados"><i class="fa icon-list-alt"></i><span>Lista de Pedidos Aprovados</span> </a> </li>
+                            </ul>
+                        </li>
+                        
                         <li><a href="/reporter"><i class="fa icon-list-alt"></i><span>Estatisticas</span> </a> </li>
                          
                     </ul>

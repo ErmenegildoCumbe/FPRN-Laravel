@@ -33,4 +33,8 @@ class User extends Authenticatable
     public function combatente(){
         return $this->hasOne('App\Combatente','users_id');
         }
+
+    public function mensagem(){
+        return $this->hasMany('App\Mensagem', 'remetente');
+    }
 }

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="span12">
         <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-th-list"></i>
+            <div class="widget-header"> <i class="fa-icon-th-list"></i>
                 <h3>Avalicao de pedido</h3>
             </div>
             <!-- /widget-header -->
@@ -21,6 +21,7 @@
                                          
                                             <form class="form-horizontal">
                                             	{{ csrf_field() }}
+                                            	<input type="hidden" name="gags" id="gags" value="{{ $pedido->id }}">
                                                 <fieldset>
                                                     <div class="control-group">											
                                                         <label class="control-label" for="firstname">Rendimento</label>
@@ -51,7 +52,7 @@
                                                         <button  class="btn">Restaurar</button>
     <!--                                                        <a class="btn btn-success" href="<?php //echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" >Aprovar</a> -->
                                                         <!-- <a class="btn btn-success" href="#myModal" role="button" data-toggle="modal">Aprovar</a> -->
-                                                        <input type="button" class="btn btn-success" id="paraAprovar" value="Aprovar" name="">
+                                                        <input type="button" class="btn btn-success" id="paraAprovar" value="Aprovar" >
                                                     </div> <!-- /form-actions -->
                                                 </fieldset>
                                             </form>
@@ -92,24 +93,27 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Confirmar valor a ser disponibilizado</h3>
     </div>
-    <form action="<?php //echo site_url("PedidoEmprestimo_controller/preaprovacao/$value->idPedidoEmprestimo") ?>" method="post">
+    <form id="formsalvarpedido">
     	{{ csrf_field() }}
         <div class="modal-body">
             <div class="form">
                 <Labe>Tempo Pagamento</Labe>
-                <input type="text" style="margin-left: 45px" class="form-control" name="tempo" placeholder="introduza o tempo pagamento" required>
+                <input type="text" style="margin-left: 45px" class="form-control" name="tempo" id="tempo" required>
             </div>
 
             <div class="form">
                 <Labe>Valor a ser Disponibilizado</Labe>
-                <input type="text" class="form-control" name="valor" placeholder="introduza o valor a ser disponibilizado" required>
+                <input type="text" class="form-control" name="valor" id="valor" required>
             </div>
+            <input type="hidden" class="form-control" value="0" name="senha" id="senha">
+            <input type="hidden" class="form-control" value="0" name="valormensal" id="valormensal">
             <div class="form" style="display: none">
-                <input type="text" class="form-control" value="30" name="tempoPagamentoInicial" placeholder="introduza o valor a ser disponibilizado">
+                
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary">Salvar</button>
+        	<input type="button" class="btn btn-primary" name="" value="Salvar" onclick="save()">
+            <!-- <button ></button> -->
             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
     </form>
@@ -118,6 +122,9 @@
 <!-- Scripts -->
 <script type="text/javascript">
 	 $('#paraAprovar').click(function () {
+	 	document.getElementById("valor").value = document.getElementById("montante").value;
+	 	document.getElementById("tempo").value = document.getElementById("tempoproposto").value;
+	 	document.getElementById("senha").value = document.getElementById("gags").value;
 	 	$('#myModal').modal('show');
 	 });
     function avaliarLoading() {
@@ -147,7 +154,10 @@
         //console.log(y);
         if (x >= y) {
             var t = '';
-            t += '<i style="margin-left: 42%" class="btn btn-success icon-5x icon-ok"></i>';
+            t+=' <div><h1>Resultados da Avaliacao</h1> <h3>Segundo as políticas do FPR, O financeamento do projecto É viável</h3></div>';
+            t += '<i style="margin-left: 42%" class="btn btn-success glyphicon glyphicon-ok"></i>';
+            //t+='<div>  <h1>Accoes:</h1>  <input class="btn btn-primary" type="button" name="" value="Aprovar" onclick="aprovar()"></div>';
+            document.getElementById("valormensal").value = x;
             $('#resultadoAvalicao').append(t);
         } else {
             var time = 0;
@@ -160,7 +170,8 @@
             }
 
             var t = '';
-            t += '<i style="margin-left: 42%" class="btn btn-danger icon-5x icon-remove"></i>';
+            t+=' <div><h1>Resultados da Avaliacao</h1> <h3>Segundo as políticas do FPR, O financeamento do projecto Nao É viável</h3></div>';
+            t += '<i style="margin-left: 42%" class="btn btn-danger glyphicon glyphicon-remove"></i>';
             $('#resultadoAvalicao').append(t);
 
 
@@ -186,6 +197,30 @@
                 $('#resultado2').append(a);
             }
         }
+    }
+    function salvar(){
+    	var cod = document.getElementById("gags").value;
+    	//console.log(cod);
+    }
+    function save(){
+    	var data = $('#formsalvarpedido').serialize();
+    	  $.ajax({
+                type: 'jax',
+                method: 'post',
+                url: "{{ route('emprestimo.store')}}",
+                data: data,
+                //async: false,
+                dataType: 'json',
+                success: function (resposta) {
+                   console.log("So sucessos na casa");
+                    //window.location="{{URL::to('/recebidos')}}";
+                    
+                },
+                error: function (error) {
+                   console.log(error);
+                   console.log("mais um erro");
+                }
+            });
     }
 </script>
 
