@@ -230,9 +230,9 @@ class PedidoemprestimoController extends Controller
     }
 
      public function lerficheiro($id){
-        $pedido = Pedidoemprestimo::findOrFail($id);
-        $url = $pedido->
-        return Response($pedido);
+        // $pedido = Pedidoemprestimo::findOrFail($id);
+        // $url = $pedido->
+        // return Response($pedido);
     }
     
 }
