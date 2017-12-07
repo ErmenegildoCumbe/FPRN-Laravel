@@ -54,7 +54,8 @@ Route::get('/gerarGrafico', 'PedidoemprestimoController@gerarGrafico');
 Route::post('/filtri/{filtro}', 'PedidoemprestimoController@dadosdofiltro');
 Route::get('/lermensagem/{id}', 'MensagemController@leitura');
 Route::get('/lerficheiro', 'PedidoemprestimoController@lerficheiro');
-
+Route::get('/leitura/{file}', 'PedidoemprestimoController@abrirficheiro' );
+Route::get('/getfile/{id}', 'PedidoemprestimoController@lerficheiro');
 
 
 

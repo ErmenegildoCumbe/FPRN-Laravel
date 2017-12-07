@@ -230,9 +230,17 @@ class PedidoemprestimoController extends Controller
     }
 
      public function lerficheiro($id){
-        // $pedido = Pedidoemprestimo::findOrFail($id);
-        // $url = $pedido->
-        // return Response($pedido);
+
+        $pedido = Pedidoemprestimo::findOrFail($id);
+        $ficheiro = $pedido->projecto->anexo;
+        $array = explode("/",$ficheiro);
+         return Response($array[2]);
+    }
+    
+     public function abrirficheiro($file){
+        //$pedido = Pedidoemprestimo::all();
+        $nomeficheiro=$file;
+        return view('admin.leranexo',compact('nomeficheiro'));
     }
     
 }

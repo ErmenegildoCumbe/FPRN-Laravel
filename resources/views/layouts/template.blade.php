@@ -70,7 +70,7 @@
                                 </ul>
                             </li>
                             
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset(Auth::user()->foto) }}" alt="perfil" style="width: 32px; height: 32px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;"> <span  style="margin-left: 40px;">{{ Auth::user()->name }}</span>  <b class="caret"></b></a>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset(Auth::user()->foto) }}" alt="perfil" style="width: 32px; height: 32px; position: absolute; float: left;border-radius: 50%; margin-top: 0px;"> <span  style="margin-left: 40px;">@if(Auth::check()) {{ Auth::user()->name }} @endif</span>  <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Perfil</a></li>
                                     <li><a href="{{ route('logout') }}"

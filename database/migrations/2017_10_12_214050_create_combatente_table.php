@@ -15,7 +15,7 @@ class CreateCombatenteTable extends Migration
     {
         Schema::create('combatentes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome', 50);
+            $table->string('nome', 120);
             $table->string('apelido', 50);
             $table->string('telefone', 40);
             $table->string('sexo', 40);

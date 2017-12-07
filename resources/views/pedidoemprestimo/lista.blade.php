@@ -3,25 +3,18 @@
 @section('content')
 
 <!-- Modal... -->
-<div class="modal fade" id="myModal" tabindex="1" role="dialog">
+<div class="modal fade" id="myModal" tabindex="1" role="dialog" style="height: 400px;">
   <!-- <div class="modal-dialog" role="document">
     <div class="modal-content"> -->
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #0098d0;color: #ffffff;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Detalhes do Pedido de Emprestimo</h4>
       </div>
-      <div class="modal-body" id="mBody">
-        <h4>Numero do pedido  <span id="numpedi"></span></h4>
-        <h4>Tipo de credito  <span id="linhacred"></span></h4>
-        <h4>Nome do Combatente  <span id="nomcomb"></span></h4>
-        <h4>Numero do Combatente  <span id="numcomb"></span></h4>
-        <h5>Montante requisitado  <span id="motante"></span></h4>
-        <h5>Data de submissao  <span id="data"></span></h4>
-        <h5>Funcionário que fez a submissao  <span id="funcio"></span></h4>
-        <h5>Estado do Pedido  <span id="estado"></span></h4>
+      <div class="modal-body" id="mBody" style="padding-bottom: 10px">
+
         <!-- <p>One fine body&hellip;</p> -->
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="height: 50px;">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
@@ -188,17 +181,32 @@
                     //document.getElementById("montante").innerHTML = $('#custoProjecto').val();
                     //document.getElementById("tempoProposto").innerHTML = $('#duracaoProjecto').val();
                     $('#myModal').modal('show');
-                    var t = '<img style="margin-left: 25%" src="{{ asset("img/loading.gif") }} "/>'
+                    var t = '<img style="margin-left: 25%" src="{{ asset("img/loading.gif") }} "/>';
+                    var d = '        <h4>Numero do pedido  <span id="numpedi"></span></h4>'
+                            +'<h4>Tipo de credito  <span id="linhacred"></span></h4>'
+                            +'<h4>Nome do Combatente  <span id="nomcomb"></span></h4>'
+                            +'<h4>Numero do Combatente  <span id="numcomb"></span></h4>'
+                            +'<h5>Montante requisitado  <span id="motante"></span></h4>'
+                            +'<h5>Data de submissao  <span id="data"></span></h4>'
+                            +'<h5>Funcionário que fez a submissao  <span id="funcio"></span></h4>'
+                            +'<h5>Estado do Pedido  <span id="estado"></span></h4>';
+                    $('#mBody').empty();
                     $('#mBody').append(t);
                     setTimeout(function () {
-                        document.getElementById("numpedi").innerHTML = resposta.id;
+                       renderizar();
+                    }, 1000);
+                    function renderizar(){
+                        $('#mBody').empty();
+                    $('#mBody').append(d);
+                     document.getElementById("numpedi").innerHTML = resposta.id;
                     document.getElementById("nomcomb").innerHTML = resposta.combatente.nome;
                     document.getElementById("linhacred").innerHTML = resposta.linhacredito.designacao;
                     document.getElementById("numcomb").innerHTML = resposta.combatente.numeroCombatente;
                     document.getElementById("motante").innerHTML = resposta.montante;
                     document.getElementById("data").innerHTML = resposta.data;
                     document.getElementById("funcio").innerHTML = resposta.user.name;
-                    }, 1000);
+                    }
+                    
                     //$('#myModal').empty();
                     
                     

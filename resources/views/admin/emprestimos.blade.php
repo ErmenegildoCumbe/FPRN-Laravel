@@ -200,6 +200,25 @@
     }).css({
         "color": "#C0C0C0"
     });
+     $('#ficheiro').click(function () {
+            var tm= document.getElementById("iddopedido").value;
+             $.ajax({
+            url: "getfile/"+tm,
+            type: "get",
+            data: tm,
+            success: function (data)
+            {
+               console.log(data);
+               window.open("{{URL::to('leitura/')}}"+'/'+data);
+            }
+            ,
+            error: function (error)
+            {
+                alert(error);
+            }
+        });
+         
+     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {

@@ -172,7 +172,7 @@
                     </div> 
 
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="height: 50px;">
                     <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
                     <button type="button" class="btn btn-primary" id="btnAddProjecto" data-dismiss="modal">Adicionar</button>
                 </div>  
