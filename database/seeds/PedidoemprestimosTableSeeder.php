@@ -19,7 +19,6 @@ class PedidoemprestimosTableSeeder extends Seeder
            'pedidoestado' => '1',
            'combatentes_id' => '1',
            'linhacreditos_id' => '1',
-           'projectos_id' => '1',
            'users_id' => '1'          
        ]);
 
@@ -30,8 +29,7 @@ class PedidoemprestimosTableSeeder extends Seeder
            'observacao' => 'que fala,estrovertida,confusa!!mas hey estárever o vosso carinho transmitido ontem dia do ',
            'pedidoestado' => '1',
            'combatentes_id' => '2',
-           'linhacreditos_id' => '2',
-           'projectos_id' => '2',
+           'linhacreditos_id' => '1',
            'users_id' => '1'          
        ]);
 
